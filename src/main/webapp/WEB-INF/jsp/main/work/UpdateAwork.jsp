@@ -32,9 +32,11 @@
             background-color: #2989b6;
             color: #fff;
         }
+
         .layui-form-label{
             font-size: 16.8px;
         }
+
         select {
             border-radius: 5px;
             border: 0px;
