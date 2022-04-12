@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.SRI.mapper.UserHxMapper">
+    <!--条件查询横项-->
+    <select id="selectHxCondition" resultType="net.cqwu.SRI.entity.Hx">
+        select * from hx
+        <where>
+            <if test="hname != null and hname != ''">
+                hname like CONCAT(CONCAT('%',#{hname},'%'))
+            </if>
+            <if test="hobject != null and hobject != ''">
+                and hobject like CONCAT(CONCAT('%',#{hobject},'%'))
+            </if>
+            <if test="utype != 'admin'">
+                and uid = #{uid}
+            </if>
+        </where>
+    </select>
+
+    <!--修改横项-->
+    <update id="UpdateHx">
+        update Hx
+        <set>
+            <if test="#{param1} != null">hname = #{param1},</if>
+            <if test="#{param2} != null">hobject = #{param2},</if>
+            <if test="#{param3} != null">hbtime = #{param3},</if>
+            <if test="#{param4} != null">hetime = #{param4},</if>
+            <if test="#{param5} != null">hmoney = ${param5},</if>
+            <if test="#{param6} != null">haddress = #{param6},</if>
+        </set>
+        where hid = ${param7}
+    </update>
+
+</mapper>
