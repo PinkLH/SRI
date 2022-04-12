@@ -1,0 +1,87 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+
+}
+body{
+    background-color: white;
+}
+.all{
+    width: 90%;
+    height: 97%;
+    max-width: 2000px;
+    min-width: 900px;
+    margin: 0 auto;
+}
+input{
+    box-shadow: 0px 0px 20px #dddddd;
+}
+.layui-form-item input{
+    width: 96%;
+}
+
+.layui-form select {
+    display: inline !important;
+}
+
+.layui-form-item{
+    font-size: 1.2em;
+    width: 60%;
+    position: relative;
+}
+.layui-form-item label{
+    width: auto;
+    position: absolute;
+    margin: 0px;
+}
+.layui-input-block{
+    margin: 1.2em;
+    position: relative;
+}
+.time{
+    width: 90%;
+    padding-left: 14px;
+    line-height: 33px;
+    font-size: 17px;
+    position:relative;
+}
+.time p{
+    margin-bottom: 15px;
+}
+.time input{
+    border: 0px;
+}
+
+.q{
+    clear: both;
+    margin-bottom: 5px;
+}
+.layui-input-block textarea{
+    width: 88%;
+}
+.wenjian{
+    /* margin-left: 15px; */
+    margin-left: 15px;
+    margin-bottom: 15px;
+    /*font-size: 1.2em;*/
+}
+.wenjian input{
+    box-shadow: none;
+    background-color: none;
+}
+
+.xia{
+    text-align: center;
+    margin-top:60px;
+}
+
+.layui-input-block{
+
+    border:0px;
+}
+
+.xia button{
+    border-radius: 5px;
+    background-color: #027DB4;
+    width: 15%;
+}

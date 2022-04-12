@@ -1,0 +1,65 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+th,
+table tr td{
+    border: 1px solid #ccc;
+}
+.all{
+    width: 95%;
+    padding-top:30px ;
+    margin: 0 auto;
+    max-width: 1600px;
+    min-width: 900px;
+}
+.head table{
+    font-size: 1.2em;
+    height: 50px;
+  
+}
+
+#form label{
+    width: 27%;
+    position: relative;
+}
+
+#form input{
+    box-shadow: 0px 0px 20px #dddddd;
+    position: relative;
+}
+#form select{
+    width: 50%;
+    border-radius: 5px;
+    font-size: 18px;
+}
+#form button{
+    width: 70px;
+    height: 30px;
+    background-color: #027DB4;
+    border-radius: 5px;
+    border: none;
+    color: #F2F2F2;
+}
+#form td{
+    border: none;
+}
+
+.kuang{
+    padding-top: 15px;
+    
+}
+.kuang table{
+    width: 100%;
+        text-align: center;
+        line-height: 40px;
+}
+
+.kuang table a{
+    color: #00a6ff;
+}
+.kuang table tr{
+    border: none;
+}

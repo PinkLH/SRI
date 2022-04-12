@@ -1,0 +1,70 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+  
+}
+
+body{background-color: white;
+   
+}
+input{
+    box-shadow: 0px 0px 20px #dddddd;
+}
+.all{
+    width: 95%;
+    height: 97%;
+    padding-top:30px ;
+    margin: 0 auto;
+    max-width: 2000px;
+    min-width: 900px;
+  
+}
+.xueshu{
+    width: 40%;
+    
+}
+.xueshu input{
+  
+    border-radius: 5px;
+}
+
+.time {
+    width: 90%;
+    padding-left: 34px;
+    line-height: 33px;
+   
+    position: relative;
+
+}
+
+.time input {
+    border: 0px;
+}
+ 
+.wenjian{
+    /* margin-left: 15px; */
+    padding-left: 35px;
+}
+
+.wenjian input{
+    box-shadow: none;
+    background-color: none;
+}
+.xia{
+    text-align: center;
+    margin-top:40px;
+ }
+ 
+ .layui-input-block{
+  
+     border:0px;
+ }
+ 
+ .xia button{
+    border-radius: 5px;
+     background-color: #027DB4;
+     width: 15%;
+ }
+ .q{
+     margin-left: 35px;
+ }

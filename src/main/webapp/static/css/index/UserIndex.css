@@ -1,0 +1,20 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  
+}
+
+body, html{
+    background-color: white;
+   	height: 100%;
+}
+.all{
+    max-width: 2000px;
+    min-width: 900px;
+    min-height: 600px;
+    margin: 0 auto;
+    width: 90%;
+    height: 95%;
+    padding-top:7px ;
+    margin: 0 auto;
+}

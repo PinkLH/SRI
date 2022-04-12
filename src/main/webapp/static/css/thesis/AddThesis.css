@@ -1,0 +1,85 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+
+}
+
+body {
+    background-color: rgba(255, 255, 255, 1);
+
+}
+
+.article {
+    width: 90%;
+    height: 97%;
+    padding-top: 25px;
+    max-width: 2000px;
+    min-width: 900px;
+    margin: 0 auto;
+}
+
+.layui-form-item input {
+    width: 96%;
+}
+
+.layui-form select {
+    display: inline !important;
+}
+
+.layui-form-item {
+    font-size: 1.2em;
+    width: 60%;
+    position: relative;
+}
+
+.layui-form-item label {
+    width: auto;
+    position: absolute;
+    margin: 0px;
+}
+
+.layui-input-block {
+    margin: 1.2em;
+    position: relative;
+}
+
+.time {
+    width: 90%;
+    padding-left: 14px;
+    line-height: 33px;
+    font-size: 17px;
+    position: relative;
+}
+
+.time input {
+    border: 0px;
+}
+
+.bottom-frame {
+    clear: both;
+    margin-bottom: 5px;
+}
+
+.layui-input-block textarea {
+    width: 88%;
+}
+
+.doc {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.foot {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.layui-input-block {
+    border: 0px;
+}
+
+.foot button {
+    border-radius: 5px;
+    background-color: #027DB4;
+    width: 15%;
+}

@@ -1,0 +1,93 @@
+{
+  "id": "3167876",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "577402",
+      "name": "向右1",
+      "font_class": "xiangyou1",
+      "unicode": "e775",
+      "unicode_decimal": 59253
+    },
+    {
+      "icon_id": "26841825",
+      "name": "项目",
+      "font_class": "xiangmu1",
+      "unicode": "ea3f",
+      "unicode_decimal": 59967
+    },
+    {
+      "icon_id": "506901",
+      "name": "finsh",
+      "font_class": "custom-finsh",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "1037704",
+      "name": "主页",
+      "font_class": "zhuye",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "3775431",
+      "name": "发表论文",
+      "font_class": "fabiaolunwen",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "8414562",
+      "name": "科研成果获奖",
+      "font_class": "keyanchengguohuojiang",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "12387169",
+      "name": "项目",
+      "font_class": "xiangmu",
+      "unicode": "e911",
+      "unicode_decimal": 59665
+    },
+    {
+      "icon_id": "14656287",
+      "name": "找专利",
+      "font_class": "zhaozhuanli",
+      "unicode": "e734",
+      "unicode_decimal": 59188
+    },
+    {
+      "icon_id": "20629629",
+      "name": "立项项目",
+      "font_class": "lixiangxiangmu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "784212",
+      "name": "版权",
+      "font_class": "banquan",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    },
+    {
+      "icon_id": "791869",
+      "name": "密码",
+      "font_class": "ai-password",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "1727459",
+      "name": "224用户",
+      "font_class": "yonghu",
+      "unicode": "e8c8",
+      "unicode_decimal": 59592
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    background-color: #fff;
+}
+
+.main-box{
+    width: 95%;
+    height: 97%;
+    padding-top:30px ;
+    max-width: 2000px;
+    min-width: 900px;
+    margin: 0 auto;
+}
+.head table{
+    font-size: 1.2em;
+    height: 50px;
+    min-width: 1000px;
+}
+#form label{
+    width: 65px;
+    position: relative;
+}
+
+#form input{
+    box-shadow: 0px 0px 20px #dddddd;
+    position: relative;
+}
+#form select{
+    /* width: 50%; */
+    border-radius: 5px;
+    font-size: 18px;
+}
+.thesis-search {
+  
+    width: 70px;
+    height: 30px;
+    transition: all .5s;
+    background-color: #2989b6;
+    border: 0px;
+    font-weight: 400;
+    color: #eee;
+    border-radius: 4px;
+    box-shadow: rgba(73, 110, 135, 0.238) 5px 5px 20px 1px
+
+}
+
+.thesis-out {
+    width: 70px;
+    height: 30px;
+    transition: all .5s;
+    background-color: #2989b6;
+    border: 0px;
+    font-weight: 400;
+    color: #eee;
+    border-radius: 4px;
+    box-shadow: rgba(73, 110, 135, 0.238) 5px 5px 20px 1px;
+}
+
+.action-button:hover {
+    background-color: #3497c5;
+}
+
+.info_table{
+    padding-top: 15px;
+    min-width: 1000px;
+}
+.info_table>table{
+        width: 100%;
+        text-align: center;
+        line-height: 40px;
+}
+.info_table table a{
+    color: #00a6ff;
+}
+.info_table table th,
+.info_table table tr,
+.info_table table tr td{
+    border: 1px solid #ccc;
+}
