@@ -30,4 +30,9 @@ public interface UserAworkService {
      * 删除某个学术著作
      */
     boolean DeleteAwork(int awid);
+
+    /**
+     * 修改学术著作
+     */
+    boolean UpdateAwork(Awork awork);
 }

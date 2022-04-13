@@ -64,4 +64,19 @@ public class UserAworkServiceImpl implements UserAworkService {
         return userAworkMapper.DeleteAwork(awid);
     }
 
+    /**
+     * 修改学术著作
+     */
+    @Override
+    public boolean UpdateAwork(Awork awork) {
+        return userAworkMapper.UpdateAwork(
+                awork.getAwname(),
+                awork.getAwperson(),
+                awork.getAwpress(),
+                awork.getAwtime(),
+                awork.getAwaddress(),
+                awork.getAwid()
+        );
+    }
+
 }

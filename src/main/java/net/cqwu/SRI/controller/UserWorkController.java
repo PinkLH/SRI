@@ -94,6 +94,9 @@ public class UserWorkController {
         return "main" + File.separator + "work" + File.separator + "UpdateSwork";
     }
 
+    /**
+     * 修改学术著作入口
+     */
     @RequestMapping("UpdateAwork")
     public String UpdateAwork(Model model, @RequestParam("awid") int awid){
         Awork awork = userAworkService.selectAwork(awid);
@@ -109,6 +112,89 @@ public class UserWorkController {
         return "main" + File.separator + "work" + File.separator + "UpdateAwork";
     }
 
+    /**
+     * 修改软件著作
+     */
+    @RequestMapping(value = "UpdateSworkInfo", method = RequestMethod.POST)
+    public void UpdateSworkInfo(Swork swork, HttpServletResponse response, HttpServletRequest request, MultipartFile uploadFile) throws IOException {
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+    }
+
+    /**
+     * 修改学术著作
+     */
+    @RequestMapping(value = "UpdateAworkInfo", method = RequestMethod.POST)
+    public void UpdateAworkInfo(Awork awork, HttpServletResponse response, HttpServletRequest request, MultipartFile uploadFile,
+                                String year, String month, String day) throws IOException, ParseException {
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String syspath = UpfilePath.getSRIPath(request);
+        String awtime = year +"-"+month+"-"+day;
+        String path = awork.getUid() + File.separator + "著作" + File.separator + "学术著作" + File.separator;
+        if (!new File(syspath).exists()) {
+            new File(syspath).mkdir();
+        }
+        String path1 = syspath + awork.getUid() +File.separator;
+        if (!new File(path1).exists()) {
+            new File(path1).mkdir();
+        }
+        path1 = path1 + "著作" + File.separator;
+        if (!new File(path1).exists()) {
+            new File(path1).mkdir();
+        }
+        path1 = path1 + "学术著作" + File.separator;
+        String filename = uploadFile.getOriginalFilename();
+        String fname = filename.substring(0, filename.lastIndexOf("."));
+        String fsuffix = filename.substring(filename.lastIndexOf("."));
+        filename = fname + "_" + UUID.randomUUID() + fsuffix;
+        File filepath = new File(path1);
+        File file = new File(path1 + filename);
+        File oldfile = new File(syspath + awork.getAwaddress());
+        if (filepath.exists()) {
+            uploadFile.transferTo(file);
+        } else {
+            filepath.mkdir();
+            uploadFile.transferTo(file);
+        }
+        awork.setAwtime(sdf.parse(awtime));
+        awork.setAwaddress(path + filename);
+
+        if (oldfile.exists()) {
+            if (oldfile.delete()) {
+                if (userAworkService.UpdateAwork(awork)) {
+                    out.println("<script type=\"text/javascript\">\r\n"
+                            + "alert(\"修改成功！\");"
+                            + "window.location.href = \"SelectWork\""
+                            + "</script>");
+                } else {
+                    out.println("<script type=\"text/javascript\">\r\n"
+                            + "alert(\"修改失败！\");"
+                            + "window.location.href = \"SelectWork\""
+                            + "</script>");
+                }
+            } else {
+                out.println("<script type=\"text/javascript\">\r\n"
+                        + "alert(\"修改失败！\");"
+                        + "window.location.href = \"SelectWork\""
+                        + "</script>");
+            }
+        } else {
+            if (userAworkService.UpdateAwork(awork)) {
+                out.println("<script type=\"text/javascript\">\r\n"
+                        + "alert(\"修改成功！\");"
+                        + "window.location.href = \"SelectWork\""
+                        + "</script>");
+            } else {
+                out.println("<script type=\"text/javascript\">\r\n"
+                        + "alert(\"修改失败！\");"
+                        + "window.location.href = \"SelectWork\""
+                        + "</script>");
+            }
+        }
+        out.close();
+
+    }
 
 
 

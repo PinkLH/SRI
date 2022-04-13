@@ -137,7 +137,7 @@
 
             <div class="layui-form-item1">
                 <div class="layui-input-block">
-                    <button type="button" class="layui-btn" onclick="confirmAdd('AddWorkInfo')" lay-submit
+                    <button type="button" class="layui-btn" onclick="confirmAdd('UpdateSworkInfo')" lay-submit
                             lay-filter="formDemo">确认添加
                     </button>
                 </div>

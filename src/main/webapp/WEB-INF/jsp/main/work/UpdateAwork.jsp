@@ -68,6 +68,9 @@
 <body>
 <div class="all">
     <form id="searchForm" class="layui-form" action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="awid" value="${awork.awid}">
+        <input type="hidden" name="awaddress" value="${awork.awaddress}">
+        <input type="hidden" name="uid" value="${awork.uid}">
         <div class="xueshu" id="xueshu">
             <div class="layui-form-item">
                 <label class="layui-form-label">著作名称:</label>
@@ -155,7 +158,7 @@
 
             <div class="layui-form-item1">
                 <div class="layui-input-block">
-                    <button type="button" class="layui-btn" onclick="confirmAdd('AddWorkInfo')" lay-submit
+                    <button type="button" class="layui-btn" onclick="confirmAdd('UpdateAworkInfo')" lay-submit
                             lay-filter="formDemo">确认修改
                     </button>
                 </div>
