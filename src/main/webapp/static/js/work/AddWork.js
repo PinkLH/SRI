@@ -102,7 +102,7 @@ $(function () {
                     '        </div>\n' +
                     '        <div class="time layui-form-item">\n' +
                     '          <label class="layui-form-label">发表时间:</label>\n' +
-                    '           <div>' +
+                    '           <div class="layui-input-block">' +
                     '                <select id="year" name="year" onchange="doChange()"></select>\n' +
                     '                &nbsp年&nbsp\n' +
                     '                <select id="month" name="month" onchange="doChange()"></select>\n' +

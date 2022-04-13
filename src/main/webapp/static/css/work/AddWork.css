@@ -48,7 +48,9 @@ input {
 .time input {
     border: 0px;
 }
-
+.time select{
+    vertical-align: middle;
+}
 .wenjian {
     margin-bottom: 15px;
 }

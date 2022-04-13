@@ -22,10 +22,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class UserWorkController {
@@ -86,6 +83,34 @@ public class UserWorkController {
         model.addAttribute("awtime", awtime);
         model.addAttribute("awlist", awlist);
     }
+
+    /**
+     * 修改软件著作入口
+     */
+    @RequestMapping("UpdateSwork")
+    public String UpdateSwork(Model model, @RequestParam("swid") String swid){
+        Swork swork = userSworkService.selectSworkBySwid(swid);
+        model.addAttribute("swork", swork);
+        return "main" + File.separator + "work" + File.separator + "UpdateSwork";
+    }
+
+    @RequestMapping("UpdateAwork")
+    public String UpdateAwork(Model model, @RequestParam("awid") int awid){
+        Awork awork = userAworkService.selectAwork(awid);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(awork.getAwtime());
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int day = cal.get(Calendar.DATE);
+        model.addAttribute("awork", awork);
+        model.addAttribute("year", year);
+        model.addAttribute("month", month);
+        model.addAttribute("day", day);
+        return "main" + File.separator + "work" + File.separator + "UpdateAwork";
+    }
+
+
+
 
     /**
      * 增加著作入口

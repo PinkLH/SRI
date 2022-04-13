@@ -121,7 +121,7 @@
                     <td>
                         <a href="#">下载</a>
                         &nbsp;|&nbsp;
-                        <a href="#">编辑</a>
+                        <a href="UpdateSwork?swid=${n.swid}">编辑</a>
                         &nbsp;|&nbsp;
                         <a href="javaScript:checkDelSwork(${n.swid})">删除</a>
                     </td>
@@ -150,7 +150,7 @@
                     <td>
                         <a href="#">下载</a>
                         &nbsp;|&nbsp;
-                        <a href="#">编辑</a>
+                        <a href="UpdateAwork?awid=${n.awid}">编辑</a>
                         &nbsp;|&nbsp;
                         <a href="javaScript:checkDelAwork(${n.awid})">删除</a>
                     </td>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +18,6 @@
         .layui-textarea:focus {
             border-color: #2989b6 !important;
         }
-
         .layui-input:hover {
             box-shadow: 0px 0px 10px #dddddd;
         }
@@ -34,7 +33,7 @@
             color: #fff;
         }
 
-        .layui-form-label {
+        .layui-form-label{
             font-size: 16.8px;
         }
 
@@ -48,7 +47,7 @@
     </style>
     <script>
         function confirmAdd(url) {
-            layer.confirm('你确定修改吗？', {
+            layer.confirm('你确定添加吗？', {
                 btn: ['确定', '取消'] //按钮
             }, function (index) {
                 layer.close();
@@ -57,52 +56,35 @@
                 layer.close(index);
             });
         }
-        function showInfo(){
-            $("#year").find("option[value = '${year}']").attr("selected", true);
-            $("#month").find("option[value = '${month}']").attr("selected", true);
-            $("#date").find("option[value = '${day}']").attr("selected", true);
-        }
     </script>
 </head>
 
 <body>
 <div class="all">
     <form id="searchForm" class="layui-form" action="" method="post" enctype="multipart/form-data">
-        <div class="xueshu" id="xueshu">
-            <div class="layui-form-item">
-                <label class="layui-form-label">著作名称:</label>
-                <div class="layui-input-block">
-                    <input type="text" name="awname" required="" lay-verify="required" placeholder="请输入著作名称"
-                           autocomplete="off" class="layui-input" value="${awork.awname}">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">出&nbsp;&nbsp;版&nbsp;&nbsp;社:</label>
-                <div class="layui-input-block">
-                    <input type="text" name="awpress" required="" lay-verify="required" placeholder="请输入出版社"
-                           autocomplete="off" class="layui-input" value="${awork.awpress}">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">编&nbsp;&nbsp;辑&nbsp;&nbsp;人:</label>
-                <div class="layui-input-block">
-                    <input type="text" name="awperson" required="" lay-verify="required" placeholder="请输入编辑人"
-                           autocomplete="off" class="layui-input" value="${awork.awperson}">
-                </div>
-            </div>
-            <div class="time layui-form-item">
-                <label class="layui-form-label">发表时间:</label>
-                <div class="layui-input-block">
-                    <select id="year" name="year" onchange="doChange()"></select>
-                    &nbsp年&nbsp
-                    <select id="month" name="month" onchange="doChange()"></select>
-                    &nbsp月&nbsp
-                    <select id="date" name="day"></select>
-                    &nbsp日&nbsp
-                </div>
 
+        <div class="xueshu" id="ruanjian">
+            <div class="layui-form-item">
+                <label class="layui-form-label">软件名称:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="swname" required lay-verify="required" placeholder="请输入软件名称"
+                           autocomplete="off" class="layui-input" value="${swork.swname}">
+                </div>
             </div>
-
+            <div class="layui-form-item">
+                <label class="layui-form-label">著作权人:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="swperson" required lay-verify="required" placeholder="请输入著作权人"
+                           autocomplete="off" class="layui-input" value="${swork.swperson}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">登&nbsp;&nbsp;记&nbsp;&nbsp;号:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="swid" required lay-verify="required" placeholder="请输入登记号"
+                           autocomplete="off" class="layui-input" value="${swork.swid}">
+                </div>
+            </div>
         </div>
 
         <div class="wenjian layui-form-item">
@@ -156,7 +138,7 @@
             <div class="layui-form-item1">
                 <div class="layui-input-block">
                     <button type="button" class="layui-btn" onclick="confirmAdd('AddWorkInfo')" lay-submit
-                            lay-filter="formDemo">确认修改
+                            lay-filter="formDemo">确认添加
                     </button>
                 </div>
             </div>
