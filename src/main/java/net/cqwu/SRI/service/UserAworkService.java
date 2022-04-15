@@ -35,4 +35,6 @@ public interface UserAworkService {
      * 修改学术著作
      */
     boolean UpdateAwork(Awork awork);
+
+
 }
