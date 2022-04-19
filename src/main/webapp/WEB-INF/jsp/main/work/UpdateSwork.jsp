@@ -62,7 +62,9 @@
 <body>
 <div class="all">
     <form id="searchForm" class="layui-form" action="" method="post" enctype="multipart/form-data">
-
+        <input type="hidden" name="oldswid" value="${swork.swid}">
+        <input type="hidden" name="swaddress" value="${swork.swaddress}">
+        <input type="hidden" name="uid" value="${swork.uid}">
         <div class="xueshu" id="ruanjian">
             <div class="layui-form-item">
                 <label class="layui-form-label">软件名称:</label>

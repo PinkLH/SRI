@@ -36,4 +36,8 @@ public interface UserSworkService {
      */
     boolean DeleteSwork(String swid);
 
+    /**
+     * 修改软件著作
+     */
+    boolean UpdateSwork(Swork swork, String oldswid);
 }

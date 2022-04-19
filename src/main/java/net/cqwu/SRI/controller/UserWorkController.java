@@ -150,9 +150,72 @@ public class UserWorkController {
      * 修改软件著作
      */
     @RequestMapping(value = "UpdateSworkInfo", method = RequestMethod.POST)
-    public void UpdateSworkInfo(Swork swork, HttpServletResponse response, HttpServletRequest request, MultipartFile uploadFile) throws IOException {
+    public void UpdateSworkInfo(Swork swork, String oldswid, HttpServletResponse response, HttpServletRequest request, MultipartFile uploadFile) throws IOException {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        String syspath = UpfilePath.getSRIPath(request);
+        String path = swork.getUid() + File.separator + "著作" + File.separator + "软件著作" + File.separator;
+        if (!new File(syspath).exists()) {
+            new File(syspath).mkdir();
+        }
+        String path1 = syspath + swork.getUid() + File.separator;
+        if (!new File(path1).exists()) {
+            new File(path1).mkdir();
+        }
+        path1 = path1 + "著作" + File.separator;
+        if (!new File(path1).exists()) {
+            new File(path1).mkdir();
+        }
+        path1 = path1 + "软件著作" + File.separator;
+        String filename = uploadFile.getOriginalFilename();
+        String fname = filename.substring(0, filename.lastIndexOf("."));
+        String fsuffix = filename.substring(filename.lastIndexOf("."));
+        filename = fname + "_" + UUID.randomUUID() + fsuffix;
+        File filepath = new File(path1);
+        File file = new File(path1 + filename);
+        File oldfile = new File(syspath + swork.getSwaddress());
+        if (filepath.exists()) {
+            uploadFile.transferTo(file);
+        } else {
+            filepath.mkdir();
+            uploadFile.transferTo(file);
+        }
+        swork.setSwtime(new Date());
+        swork.setSwaddress(path + filename);
+
+        if (oldfile.exists()) {
+            if (oldfile.delete()) {
+                if (userSworkService.UpdateSwork(swork, oldswid)) {
+                    out.println("<script type=\"text/javascript\">\r\n"
+                            + "alert(\"修改成功！\");"
+                            + "window.location.href = \"SelectWork\""
+                            + "</script>");
+                } else {
+                    out.println("<script type=\"text/javascript\">\r\n"
+                            + "alert(\"修改失败！\");"
+                            + "window.location.href = \"SelectWork\""
+                            + "</script>");
+                }
+            } else {
+                out.println("<script type=\"text/javascript\">\r\n"
+                        + "alert(\"修改失败！\");"
+                        + "window.location.href = \"SelectWork\""
+                        + "</script>");
+            }
+        } else {
+            if (userSworkService.UpdateSwork(swork, oldswid)) {
+                out.println("<script type=\"text/javascript\">\r\n"
+                        + "alert(\"修改成功！\");"
+                        + "window.location.href = \"SelectWork\""
+                        + "</script>");
+            } else {
+                out.println("<script type=\"text/javascript\">\r\n"
+                        + "alert(\"修改失败！\");"
+                        + "window.location.href = \"SelectWork\""
+                        + "</script>");
+            }
+        }
+        out.close();
     }
 
     /**
@@ -393,7 +456,7 @@ public class UserWorkController {
     }
 
     /**
-     * 删除一个软件著作
+     * 删除一个学术著作
      */
     @RequestMapping("DeleteAwork")
     public void DeleteAwork(HttpServletRequest request, HttpServletResponse response, @RequestParam("awid") int awid) throws IOException {

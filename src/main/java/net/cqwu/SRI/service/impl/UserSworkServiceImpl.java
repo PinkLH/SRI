@@ -71,4 +71,19 @@ public class UserSworkServiceImpl implements UserSworkService {
     public boolean DeleteSwork(String swid) {
         return userSworkMapper.DeleteSwork(swid);
     }
+
+    /**
+     * 修改软件著作
+     */
+    @Override
+    public boolean UpdateSwork(Swork swork, String oldswid) {
+        return userSworkMapper.UpdateSwork(
+                swork.getSwid(),
+                swork.getSwname(),
+                swork.getSwperson(),
+                swork.getSwtime(),
+                swork.getSwaddress(),
+                oldswid
+        );
+    }
 }
