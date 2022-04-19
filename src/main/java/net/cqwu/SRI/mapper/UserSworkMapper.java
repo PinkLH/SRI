@@ -3,6 +3,7 @@ package net.cqwu.SRI.mapper;
 import net.cqwu.SRI.entity.Swork;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.Date;
@@ -39,4 +40,10 @@ public interface UserSworkMapper {
      */
     @Delete("delete from swork where swid = #{param1}")
     boolean DeleteSwork(String swid);
+
+    /**
+     * 通过名称搜索软件著作
+     */
+    List<Swork> selectSworkCondition(@Param("wname") String wname, @Param("utype") String utype, @Param("uid") String uid);
+
 }

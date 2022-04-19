@@ -30,11 +30,15 @@
             background-color: #2989b6;
             color: #fff;
         }
-
+        #form label {
+            width: 90px;
+        }
         .layui-form-item .layui-input-inline {
             width: 60%;
         }
-
+        #form button {
+            width: 80px;
+        }
         .trcolor {
             background-color: #b0eeff !important;
         }
@@ -67,7 +71,7 @@
         <div class="head">
             <table id="form" width="100%" align="center" onsubmit="return false">
                 <tr height="50px">
-                    <td width="28%">
+                    <td width="25%">
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">项目编号：</label>
                             <div class="layui-input-inline">
@@ -77,7 +81,7 @@
                         </div>
 
                     </td>
-                    <td width="27%">
+                    <td width="25%">
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">项目名称：</label>
                             <div class="layui-input-inline">
@@ -88,7 +92,7 @@
                         <!-- <label> 项目编号：</label>
                         <input type="text" placeholder="请输入项目编号" autocomplete="off"> -->
                     </td>
-                    <td width="28%">
+                    <td width="25%">
 
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">项目级别：</label>
@@ -106,8 +110,8 @@
                     </td>
                     <td align="right">
                         <button type="submit">查询</button>
-                        &nbsp;&nbsp;
-                        <button type="button" onclick="window.location.href='DownloadLx'">导出</button>
+                        <button type="button" onclick="window.location.href='DownloadLx'">导出附件</button>
+                        <button type="button" onclick="window.location.href='ExportLxExcel'">导出Excel</button>
                     </td>
                 </tr>
             </table>

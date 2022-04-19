@@ -17,6 +17,11 @@ public interface UserSworkService {
     List<Swork> selectSwork(String uid);
 
     /**
+     * 通过名称搜索软件著作
+     */
+    List<Swork> selectSwork(String wname, String utype, String uid);
+
+    /**
      * 查询某个软件著作
      */
     Swork selectSworkBySwid(String swid);
@@ -30,4 +35,5 @@ public interface UserSworkService {
      * 删除某个软件著作
      */
     boolean DeleteSwork(String swid);
+
 }

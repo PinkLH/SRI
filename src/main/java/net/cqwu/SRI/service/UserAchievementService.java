@@ -11,6 +11,16 @@ public interface UserAchievementService {
     List<Achievement> selectAchievement();
 
     /**
+     * 查询某个用户的所有成果获奖的Excel数据
+     */
+    List<Achievement> selectExcelAchievement();
+
+    /**
+     * 查询某个用户的所有成果获奖
+     */
+    List<Achievement> selectExcelAchievement(String uid);
+
+    /**
      * 条件查询成果获奖
      */
     List<Achievement> selectAchievement(Achievement achievement, String utype);

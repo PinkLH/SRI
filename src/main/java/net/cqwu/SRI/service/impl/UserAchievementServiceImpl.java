@@ -26,6 +26,22 @@ public class UserAchievementServiceImpl implements UserAchievementService {
     }
 
     /**
+     * 查询所有成果获奖的Excel数据
+     */
+    @Override
+    public List<Achievement> selectExcelAchievement() {
+        return userAchievementMapper.selectExcelAchievement();
+    }
+
+    /**
+     * 查询某个用户的所有成果获奖的Excel数据
+     */
+    @Override
+    public List<Achievement> selectExcelAchievement(String uid) {
+        return userAchievementMapper.selectAllUserExcelAchievement(uid);
+    }
+
+    /**
      * 条件查询成果获奖
      */
     @Override

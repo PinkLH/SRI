@@ -34,7 +34,9 @@
         body {
             background-color: #fff;
         }
-
+        #form button {
+            width: 80px;
+        }
         .trcolor{
             background-color: #b0eeff !important;
         }
@@ -66,26 +68,26 @@
 <body>
 <div class="all">
 
-    <form class="layui-form" action="">
+    <form class="layui-form" action="SelectWorkInfo">
         <div class="head">
             <table id="form" width="100%" align="center">
                 <tr height="50px">
-                    <td width="40%">
+                    <td width="30%">
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">名称搜索：</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="aff1" required lay-verify="required" placeholder="请输入名称"
+                                <input type="text" name="wname" lay-verify="required" placeholder="请输入名称"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </td>
 
-                    <td width="40%" align="left">
+                    <td width="30%" align="left">
 
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">项目级别：</label>
                             <div class="layui-input-inline">
-                                <select id="work_type" name="knx8f" lay-verify="required" lay-search lay-filter="test">
+                                <select id="work_type" name="wtype" lay-verify="required" lay-search lay-filter="test">
                                     <option value="0">软件著作</option>
                                     <option value="1">学术著作</option>
                                 </select>
@@ -93,9 +95,9 @@
                         </div>
                     </td>
                     <td align="right">
-                        <button lay-submit lay-filter="formDemo">查询</button>
-                        &nbsp;
-                        <button lay-submit lay-filter="formDemo">导出</button>
+                        <button type="submit">查询</button>
+                        <button type="button" onclick="window.location.href='DownloadWork'">导出附件</button>
+                        <button type="button" onclick="window.location.href='ExportWorkExcel'">导出Excel</button>
                     </td>
                 </tr>
             </table>

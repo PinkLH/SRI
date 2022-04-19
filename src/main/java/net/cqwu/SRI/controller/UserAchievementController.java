@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.cqwu.SRI.util.ExcelExport;
 import net.cqwu.SRI.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -375,4 +376,30 @@ public class UserAchievementController {
         }
         out.close();
     }
+
+    /**
+     * 导出成果获奖的excel
+     */
+    @RequestMapping("ExportAchievementExcel")
+    public void ExportAchievementExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+
+        ExcelExport<Achievement> excel = new ExcelExport<Achievement>();
+        //表格的头部信息
+        String[] headers = {"ID", "成果名称", "授予单位", "获得时间", "级别", "类型"};
+        //从数据库查到的数据
+        List<Achievement> list;
+        if ("admin".equals(user.getUtype())) {
+            list = userAchievementService.selectExcelAchievement();
+            String mimeType = request.getServletContext().getMimeType("成果获奖.xls");
+            excel.exportExcel("成果获奖.xls", headers, list, response, request, mimeType);
+        } else {
+            list = userAchievementService.selectExcelAchievement(user.getUid());
+            String mimeType = request.getServletContext().getMimeType("成果获奖.xls");
+            excel.exportExcel(user.getUid() + "_成果获奖.xls", headers, list, response, request, mimeType);
+        }
+
+
+    }
+
 }

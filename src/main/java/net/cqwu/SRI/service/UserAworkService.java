@@ -36,5 +36,8 @@ public interface UserAworkService {
      */
     boolean UpdateAwork(Awork awork);
 
-
+    /**
+     * 通过名称查询学术著作
+     */
+    List<Awork> selectAwork(String wname, String utype, String uid);
 }

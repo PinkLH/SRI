@@ -79,4 +79,12 @@ public class UserAworkServiceImpl implements UserAworkService {
         );
     }
 
+    /**
+     * 通过名称查询学术著作
+     */
+    @Override
+    public List<Awork> selectAwork(String wname, String utype, String uid) {
+        return userAworkMapper.selectAworkCondition(wname, utype, uid);
+    }
+
 }

@@ -85,10 +85,44 @@ public class UserWorkController {
     }
 
     /**
+     * 条件查询著作
+     */
+    @RequestMapping("SelectWorkInfo")
+    public String SelectWorkInfo(String wname, Model model, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        this.SelectSworkInfo(model, user, wname);
+        this.SelectAworkInfo(model, user, wname);
+        return "main" + File.separator + "work" + File.separator + "SelectWork";
+    }
+
+    /**
+     * 条件查询软件著作
+     */
+    private void SelectSworkInfo(Model model, Users user, String wname) {
+        List<Swork> swlist;
+        swlist = userSworkService.selectSwork(wname, user.getUtype(), user.getUid());
+        model.addAttribute("swlist", swlist);
+    }
+
+    /**
+     * 条件查询学术著作
+     */
+    private void SelectAworkInfo(Model model, Users user, String wname) {
+        List<Awork> awlist;
+        List<String> awtime = new ArrayList<>();
+        awlist = userAworkService.selectAwork(wname, user.getUtype(), user.getUid());
+        for (Awork a : awlist) {
+            awtime.add(sdf.format(a.getAwtime()));
+        }
+        model.addAttribute("awtime", awtime);
+        model.addAttribute("awlist", awlist);
+    }
+
+    /**
      * 修改软件著作入口
      */
     @RequestMapping("UpdateSwork")
-    public String UpdateSwork(Model model, @RequestParam("swid") String swid){
+    public String UpdateSwork(Model model, @RequestParam("swid") String swid) {
         Swork swork = userSworkService.selectSworkBySwid(swid);
         model.addAttribute("swork", swork);
         return "main" + File.separator + "work" + File.separator + "UpdateSwork";
@@ -98,7 +132,7 @@ public class UserWorkController {
      * 修改学术著作入口
      */
     @RequestMapping("UpdateAwork")
-    public String UpdateAwork(Model model, @RequestParam("awid") int awid){
+    public String UpdateAwork(Model model, @RequestParam("awid") int awid) {
         Awork awork = userAworkService.selectAwork(awid);
         Calendar cal = Calendar.getInstance();
         cal.setTime(awork.getAwtime());
@@ -130,12 +164,12 @@ public class UserWorkController {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String syspath = UpfilePath.getSRIPath(request);
-        String awtime = year +"-"+month+"-"+day;
+        String awtime = year + "-" + month + "-" + day;
         String path = awork.getUid() + File.separator + "著作" + File.separator + "学术著作" + File.separator;
         if (!new File(syspath).exists()) {
             new File(syspath).mkdir();
         }
-        String path1 = syspath + awork.getUid() +File.separator;
+        String path1 = syspath + awork.getUid() + File.separator;
         if (!new File(path1).exists()) {
             new File(path1).mkdir();
         }
@@ -195,8 +229,6 @@ public class UserWorkController {
         out.close();
 
     }
-
-
 
 
     /**

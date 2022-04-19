@@ -44,11 +44,10 @@ public interface UserAworkMapper {
     /**
      * 条件查询学术著作
      */
-    List<Awork> selectAworkCondition(@Param("awname") String awname, @Param("uid") String uid, @Param("utype") String utype);
+    List<Awork> selectAworkCondition(@Param("awname") String awname, @Param("utype") String utype, @Param("uid") String uid);
 
     /**
      * 修改学术著作
      */
     boolean UpdateAwork(String awname, String awperson, String awpress, Date awtime, String awaddress, int awid);
-
 }

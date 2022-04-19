@@ -26,10 +26,13 @@
         }
         .layui-form-label{
             padding: 9px 0px;
-            font-size: 13px;
+            font-size: 16.8px;
         }
         .layui-form-item .layui-input-inline{
             width: 55%;
+        }
+        #form button {
+            width: 80px;
         }
         .trcolor{
             background-color: #b0eeff !important;
@@ -58,7 +61,7 @@
             <div class="head">
                 <table id="form" width="100%" align="center" onsubmit="return false">
                     <tr height="50px">
-                        <td width="25%">
+                        <td width="30%">
                             <div class="layui-form-item" style="margin-bottom: 0px;">
                                 <label class="layui-form-label">专利号/申请号：</label>
                                 <div class="layui-input-inline">
@@ -67,7 +70,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td width="25%">
+                        <td width="30%">
                             <div class="layui-form-item" style="margin-bottom: 0px;">
                                 <label class="layui-form-label" >专利名称：</label>
                                 <div class="layui-input-inline" >
@@ -79,8 +82,8 @@
 
                         <td align="right">
                             <button type="submit" class="thesis-search action-button">查询</button>
-                            &nbsp;&nbsp;
-                            <button type="button" class="thesis-out action-button" onclick="window.location.href='DownloadPatent'">导出</button>
+                            <button type="button" class="thesis-out action-button" onclick="window.location.href='DownloadPatent'">导出附件</button>
+                            <button type="button" class="thesis-out action-button" onclick="window.location.href='ExportPatentExcel'">导出Excel</button>
                         </td>
                     </tr>
                 </table>

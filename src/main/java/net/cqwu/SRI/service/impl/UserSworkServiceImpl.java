@@ -34,6 +34,14 @@ public class UserSworkServiceImpl implements UserSworkService {
     }
 
     /**
+     * 通过名称搜索软件著作
+     */
+    @Override
+    public List<Swork> selectSwork(String wname, String utype, String uid) {
+        return userSworkMapper.selectSworkCondition(wname, utype, uid);
+    }
+
+    /**
      * 查询某个软件著作
      */
     @Override

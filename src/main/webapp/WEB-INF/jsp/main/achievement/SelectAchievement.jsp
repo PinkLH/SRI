@@ -2,7 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
     <base href="${pageContext.request.contextPath}/SRI">
@@ -27,20 +27,25 @@
 
         .layui-form-label {
             padding: 9px 0px;
-            font-size: 13px;
+            font-size: 16.8px;
         }
 
         .layui-form-item .layui-input-inline {
             width: 55%;
-            font-size: 14px;
+            /*font-size: 14px;*/
         }
-
+        #form label {
+            width: 90px;
+        }
         select {
             border-radius: 5px;
             border: 0px;
             font-size: 18px;
             height: 30px;
             box-shadow: 0px 0px 10px #dddddd;
+        }
+        .thesis-out {
+            width: 80px;
         }
         .trcolor{
             background-color: #b0eeff !important;
@@ -70,7 +75,7 @@
         <div class="head">
             <table id="form" width="100%" align="center" onsubmit="return false">
                 <tr height="50px">
-                    <td width="18%">
+                    <td width="25%">
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">名称搜索：</label>
                             <div class="layui-input-inline">
@@ -80,7 +85,7 @@
                         </div>
                     </td>
 
-                    <td width="18%" align="left">
+                    <td width="25%" align="left">
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">成果级别：</label>
                             <div class="layui-input-inline">
@@ -94,7 +99,7 @@
                             </div>
                         </div>
                     </td>
-                    <td width="18%" align="left">
+                    <td width="25%" align="left">
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">成果类型：</label>
                             <div class="layui-input-inline">
@@ -108,11 +113,14 @@
                             </div>
                         </div>
                     </td>
-                    <td width="30%"></td>
+<%--                    <td width="20%"></td>--%>
                     <td align="right">
                         <button type="submit" class="thesis-search action-button">查询</button>
                         <button type="button" class="thesis-out action-button"
-                                onclick="window.location.href='DownloadAchievement'">导出
+                                onclick="window.location.href='DownloadAchievement'">导出附件
+                        </button>
+                        <button type="button" class="thesis-out action-button"
+                                onclick="window.location.href='ExportAchievementExcel'">导出Excel
                         </button>
                     </td>
                 </tr>

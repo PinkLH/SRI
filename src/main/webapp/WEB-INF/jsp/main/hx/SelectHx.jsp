@@ -30,6 +30,9 @@
         .layui-form-item .layui-input-inline {
             width: 45%;
         }
+        #form button {
+            width: 80px;
+        }
         .trcolor{
             background-color: #b0eeff !important;
         }
@@ -58,7 +61,7 @@
             <table id="form" width="100%" align="center">
                 <tr height="50">
 
-                    <td width="40%">
+                    <td width="35%">
                         <div class="layui-form-item">
                             <label class="layui-form-label">合同名称：</label>
                             <div class="layui-input-inline">
@@ -67,7 +70,7 @@
                             </div>
                         </div>
                     </td>
-                    <td width="40%">
+                    <td width="35%">
                         <div class="layui-form-item">
                             <label class="layui-form-label">合作对象：</label>
                             <div class="layui-input-inline">
@@ -76,10 +79,11 @@
                             </div>
                         </div>
                     </td>
+<%--                    <td width="10%"></td>--%>
                     <td align="right">
                         <button type="submit">查询</button>
-                        &nbsp;
-                        <button type="button" onclick="window.location.href='DownloadHx'">导出</button>
+                        <button type="button" onclick="window.location.href='DownloadHx'">导出附件</button>
+                        <button type="button" onclick="window.location.href='ExportHxExcel'">导出Excel</button>
                     </td>
                 </tr>
             </table>

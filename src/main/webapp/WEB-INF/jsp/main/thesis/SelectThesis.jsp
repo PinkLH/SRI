@@ -24,6 +24,9 @@
             background-color: #2989b6;
             color: #fff;
         }
+        .thesis-out {
+            width: 80px;
+        }
         .trcolor{
             background-color: #b0eeff !important;
         }
@@ -82,7 +85,10 @@
                     <td align="right">
                         <button type="submit" class="thesis-search action-button">查询</button>
                         <button type="button" class="thesis-out action-button"
-                                onclick="window.location.href='DownloadThesis'">导出
+                                onclick="window.location.href='DownloadThesis'">导出附件
+                        </button>
+                        <button type="button" class="thesis-out action-button"
+                                onclick="window.location.href='ExportThesisExcel'">导出Excel
                         </button>
                     </td>
                 </tr>

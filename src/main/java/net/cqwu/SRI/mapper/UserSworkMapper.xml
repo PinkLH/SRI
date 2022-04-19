@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.SRI.mapper.UserSworkMapper">
+    <!--??????-->
+    <select id="selectSworkCondition" resultType="net.cqwu.SRI.entity.Swork">
+        select * from swork
+        <where>
+            <if test="wname != null and wname != ''">
+                swname like CONCAT(CONCAT('%',#{wname},'%'))
+            </if>
+            <if test="utype != 'admin'">
+                and uid = #{uid}
+            </if>
+        </where>
+    </select>
+</mapper>
