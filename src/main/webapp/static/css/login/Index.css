@@ -93,7 +93,9 @@ nav {
     position: relative;
     cursor: pointer;
 }
-
+.main_info{
+    color: #555555;
+}
 .icon_right {
     margin-left: 60px;
     width: 20px;

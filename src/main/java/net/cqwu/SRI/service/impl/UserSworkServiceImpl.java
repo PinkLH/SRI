@@ -81,7 +81,6 @@ public class UserSworkServiceImpl implements UserSworkService {
                 swork.getSwid(),
                 swork.getSwname(),
                 swork.getSwperson(),
-                swork.getSwtime(),
                 swork.getSwaddress(),
                 oldswid
         );

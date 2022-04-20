@@ -42,6 +42,10 @@
         }
     </style>
     <script>
+        function showInfo(){
+            $('#wtype').siblings("div.layui-form-select").find('dl').find("dd[lay-value='${wtype}']").click();
+        }
+
         function checkDelAwork(awid) {
             layer.confirm('是否删除该条信息？', {
                 btn: ['确定', '取消']
@@ -77,7 +81,7 @@
                             <label class="layui-form-label">名称搜索：</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="wname" lay-verify="required" placeholder="请输入名称"
-                                       autocomplete="off" class="layui-input">
+                                       autocomplete="off" class="layui-input" value="${wname}">
                             </div>
                         </div>
                     </td>
@@ -87,7 +91,7 @@
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">项目级别：</label>
                             <div class="layui-input-inline">
-                                <select id="work_type" name="wtype" lay-verify="required" lay-search lay-filter="test">
+                                <select id="wtype" name="wtype" lay-verify="required" lay-search lay-filter="test">
                                     <option value="0">软件著作</option>
                                     <option value="1">学术著作</option>
                                 </select>
@@ -121,11 +125,11 @@
                     <td>${n.swid}</td>
                     <td>${n.swperson}</td>
                     <td>
-                        <a href="#">下载</a>
+                        <a href="DownloadSworkBySwid?swid=${n.swid}">下载</a>
                         &nbsp;|&nbsp;
                         <a href="UpdateSwork?swid=${n.swid}">编辑</a>
                         &nbsp;|&nbsp;
-                        <a href="javaScript:checkDelSwork(${n.swid})">删除</a>
+                        <a href="javaScript:checkDelSwork('${n.swid}')">删除</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -150,7 +154,7 @@
                     <td>${n.awpress}</td>
                     <td>${n.awperson}</td>
                     <td>
-                        <a href="#">下载</a>
+                        <a href="DownloadAworkByAwid?awid=${n.awid}">下载</a>
                         &nbsp;|&nbsp;
                         <a href="UpdateAwork?awid=${n.awid}">编辑</a>
                         &nbsp;|&nbsp;

@@ -49,5 +49,5 @@ public interface UserSworkMapper {
     /**
      * 修改软件著作
      */
-    boolean UpdateSwork(String swid, String swname, String swperson, Date swtime, String swaddress, String oldswid);
+    boolean UpdateSwork(String swid, String swname, String swperson, String swaddress, String oldswid);
 }

@@ -6,6 +6,7 @@ import net.cqwu.SRI.entity.Users;
 import net.cqwu.SRI.service.UserAworkService;
 import net.cqwu.SRI.service.UserSworkService;
 import net.cqwu.SRI.util.UpfilePath;
+import net.cqwu.SRI.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -88,10 +88,12 @@ public class UserWorkController {
      * 条件查询著作
      */
     @RequestMapping("SelectWorkInfo")
-    public String SelectWorkInfo(String wname, Model model, HttpSession session) {
+    public String SelectWorkInfo(String wname, String wtype, Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
         this.SelectSworkInfo(model, user, wname);
         this.SelectAworkInfo(model, user, wname);
+        model.addAttribute("wtype", wtype);
+        model.addAttribute("wname", wname);
         return "main" + File.separator + "work" + File.separator + "SelectWork";
     }
 
@@ -180,7 +182,6 @@ public class UserWorkController {
             filepath.mkdir();
             uploadFile.transferTo(file);
         }
-        swork.setSwtime(new Date());
         swork.setSwaddress(path + filename);
 
         if (oldfile.exists()) {
@@ -492,5 +493,149 @@ public class UserWorkController {
         out.close();
     }
 
+    /**
+     * 下载某个软件著作
+     */
+    @RequestMapping("DownloadSworkBySwid")
+    public void DownloadSworkBySwid(@RequestParam("swid") String swid, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String syspath = UpfilePath.getSRIPath(request);
+        String path = syspath + userSworkService.selectSworkBySwid(swid).getSwaddress();
+        //得到要下载的文件
+        File file = new File(path);
+        if (!file.exists()) {
+            response.setContentType("text/html; charset=UTF-8");
+            response.getWriter().print("<html>" +
+                    "<body>" +
+                    "<script type='text/javascript'>" +
+                    "alert('您要下载的资源已被删除！');" +
+                    "window.location.href = \"SelectLx\"" +
+                    "</script>" +
+                    "</body>" +
+                    "</html>");
+            response.getWriter().close();
+//            System.out.println("您要下载的资源已被删除！！");
+            return;
+        }
+        String filenameUUID = path.substring(path.lastIndexOf(File.separator) + 1);
+        String filename = filenameUUID.substring(0, filenameUUID.lastIndexOf("_")) + filenameUUID.substring(filenameUUID.lastIndexOf("."));
+        //转码，避免文件名中文乱码
+        filename = URLEncoder.encode(filename, "UTF-8");
+        //设置文件下载头
+        response.addHeader("Content-Disposition", "attachment;filename=" + filename);
+        //设置文件ContentType类型，自动判断下载文件类型
+        response.setContentType("multipart/form-data");
+        // 读取要下载的文件，保存到文件输入流
+        FileInputStream in = new FileInputStream(path);
+        // 创建输出流
+        OutputStream out = response.getOutputStream();
+        // 创建缓冲区
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        //循环将输入流中的内容读取到缓冲区当中
+        while ((len = in.read(buffer)) > 0) {
+            out.write(buffer, 0, len);
+        }
+        //关闭文件输入流
+        in.close();
+        // 关闭输出流
+        out.close();
+
+    }
+
+    /**
+     * 下载某个学术著作
+     */
+    @RequestMapping("DownloadAworkByAwid")
+    public void DownloadAworkByAwid(@RequestParam("awid") int awid, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String syspath = UpfilePath.getSRIPath(request);
+        String path = syspath + userAworkService.selectAwork(awid).getAwaddress();
+        //得到要下载的文件
+        File file = new File(path);
+        if (!file.exists()) {
+            response.setContentType("text/html; charset=UTF-8");
+            response.getWriter().print("<html>" +
+                    "<body>" +
+                    "<script type='text/javascript'>" +
+                    "alert('您要下载的资源已被删除！');" +
+                    "window.location.href = \"SelectLx\"" +
+                    "</script>" +
+                    "</body>" +
+                    "</html>");
+            response.getWriter().close();
+//            System.out.println("您要下载的资源已被删除！！");
+            return;
+        }
+        String filenameUUID = path.substring(path.lastIndexOf(File.separator) + 1);
+        String filename = filenameUUID.substring(0, filenameUUID.lastIndexOf("_")) + filenameUUID.substring(filenameUUID.lastIndexOf("."));
+        //转码，避免文件名中文乱码
+        filename = URLEncoder.encode(filename, "UTF-8");
+        //设置文件下载头
+        response.addHeader("Content-Disposition", "attachment;filename=" + filename);
+        //设置文件ContentType类型，自动判断下载文件类型
+        response.setContentType("multipart/form-data");
+        // 读取要下载的文件，保存到文件输入流
+        FileInputStream in = new FileInputStream(path);
+        // 创建输出流
+        OutputStream out = response.getOutputStream();
+        // 创建缓冲区
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        //循环将输入流中的内容读取到缓冲区当中
+        while ((len = in.read(buffer)) > 0) {
+            out.write(buffer, 0, len);
+        }
+        //关闭文件输入流
+        in.close();
+        // 关闭输出流
+        out.close();
+
+    }
+
+    /**
+     * 下载所有的著作
+     */
+    @RequestMapping("DownloadWork")
+    public void DownloadWork(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String syspath = UpfilePath.getSRIPath(request);
+        Users user = (Users) session.getAttribute("user");
+        String utype = user.getUtype();
+        String uid = user.getUid();
+        String userPath = syspath + uid + File.separator + "著作" + File.separator;
+        //设置文件下载头
+        if ("user".equals(utype)) {
+            response.addHeader("Content-Disposition", "attachment;filename=" + uid + "_Work.zip");
+        } else {
+            response.addHeader("Content-Disposition", "attachment;filename=Work.zip");
+        }
+        //设置文件ContentType类型，自动判断下载文件类型
+        response.setContentType("multipart/form-data");
+        OutputStream out = response.getOutputStream();
+        ZipUtil zipUtil = new ZipUtil();
+        if ("user".equals(utype)) {
+            zipUtil.toZip(userPath, out, true);
+        }else{
+            List<Swork> sworkList = userSworkService.selectSwork();
+            List<Awork> aworkList = userAworkService.selectAwork();
+            List<File> wfileList = new ArrayList<>();
+            for(Swork sw : sworkList){
+                wfileList.add(new File(syspath + sw.getSwaddress()));
+            }
+            for(Awork aw : aworkList){
+                wfileList.add(new File(syspath + aw.getAwaddress()));
+            }
+            zipUtil.toZip(wfileList, out);
+        }
+        out.close();
+    }
+//
+//    /**
+//     * 导出著作Excel表格
+//     */
+//    @RequestMapping("WorkExcel")
+//    public void WorkExcel(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+//        String syspath = UpfilePath.getSRIPath(request);
+//
+//
+//    }
 
 }

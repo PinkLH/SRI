@@ -146,7 +146,7 @@
             // top: 'center',
             feature: {
                 mark: {show: true},
-                dataView: {show: true, readOnly: false},
+                // dataView: {show: true, readOnly: false},
                 magicType: {show: true, type: ['line', 'bar', 'stack']},
                 restore: {show: true},
                 saveAsImage: {show: true}

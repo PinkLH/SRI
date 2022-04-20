@@ -1,6 +1,7 @@
 package net.cqwu.SRI.controller;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 
 import java.text.ParseException;
@@ -381,7 +382,7 @@ public class UserAchievementController {
      * 导出成果获奖的excel
      */
     @RequestMapping("ExportAchievementExcel")
-    public void ExportAchievementExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public void ExportAchievementExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Users user = (Users) session.getAttribute("user");
 
         ExcelExport<Achievement> excel = new ExcelExport<Achievement>();
@@ -392,11 +393,11 @@ public class UserAchievementController {
         if ("admin".equals(user.getUtype())) {
             list = userAchievementService.selectExcelAchievement();
             String mimeType = request.getServletContext().getMimeType("成果获奖.xls");
-            excel.exportExcel("成果获奖.xls", headers, list, response, request, mimeType);
+            excel.exportExcel("成果获奖.xls", headers, list, response, mimeType);
         } else {
             list = userAchievementService.selectExcelAchievement(user.getUid());
             String mimeType = request.getServletContext().getMimeType("成果获奖.xls");
-            excel.exportExcel(user.getUid() + "_成果获奖.xls", headers, list, response, request, mimeType);
+            excel.exportExcel(user.getUid() + "_成果获奖.xls", headers, list, response, mimeType);
         }
 
 

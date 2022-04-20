@@ -1,4 +1,5 @@
 package net.cqwu.SRI.util;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -10,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -38,36 +38,16 @@ public class ExcelExport<T> {
 
     private int length = 0;
 
-    public void exportExcel(String headerName, Collection<T> dataset, HttpServletResponse response,HttpServletRequest request,String mimeType) {
-
-        try {
-            exportExcel(headerName, null,dataset,response,request,"yyyy-MM-dd",mimeType);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
     /**
-     *
-     * @param headerName		文件名称
-     * @param headers		表格头部信息
-     * @param dataset		查到的数据集合
-     * @param response		响应response
-     * @param request		请求request
-     * @param mimeType		content类型
+     * @param headerName 文件名称
+     * @param headers    表格头部信息
+     * @param dataset    查到的数据集合
+     * @param response   响应response
+     * @param request    请求request
+     * @param mimeType   content类型
      */
-    public void exportExcel(String headerName, String[] headers, Collection<T> dataset,HttpServletResponse response,HttpServletRequest request,String mimeType) {
 
-        try {
-            exportExcel(headerName, headers, dataset,response,request,"yyyy-MM-dd",mimeType);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public void exportExcel(String title, String[] headers, Collection<T> dataset,HttpServletResponse response,HttpServletRequest request, String pattern,String mimeType)
+    public void exportExcel(String title, String[] headers, Collection<T> dataset, HttpServletResponse response, String mimeType)
             throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException,
             InvocationTargetException {
 
@@ -82,7 +62,7 @@ public class ExcelExport<T> {
 
         font.setFontName("黑体");
 
-        font.setFontHeightInPoints((short)16);
+        font.setFontHeightInPoints((short) 16);
 
         HSSFRow row = sheet.createRow(0);
 
@@ -233,7 +213,7 @@ public class ExcelExport<T> {
             String fileName = URLEncoder.encode(title, "UTF-8");
             //9.设置信息头
             response.setContentType(mimeType);
-            response.setHeader("Content-Disposition","attachment;filename="+fileName);
+            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
             workbook.write(outputStream);
         } catch (IOException e) {
 
