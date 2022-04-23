@@ -70,4 +70,15 @@ public interface UserLxMapper {
      */
     boolean UpdateLx(String lid, String lname, String ltype, Date lbtime, Date letime,
                      int lmoney, String laddress, String lperson, String oldLid);
+
+
+    /**
+     * 查询所有立项的Excel数据
+     */
+    List<Lx> selectExcelLx();
+
+    /**
+     * 查询某个用户的所有立项的Excel数据
+     */
+    List<Lx> selectAllUserExcelLx(String uid);
 }

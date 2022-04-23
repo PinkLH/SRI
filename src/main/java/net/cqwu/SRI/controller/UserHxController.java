@@ -1,9 +1,9 @@
 package net.cqwu.SRI.controller;
 
-import net.cqwu.SRI.entity.Achievement;
 import net.cqwu.SRI.entity.Hx;
 import net.cqwu.SRI.entity.Users;
 import net.cqwu.SRI.service.UserHxService;
+import net.cqwu.SRI.util.ExcelExport;
 import net.cqwu.SRI.util.UpfilePath;
 import net.cqwu.SRI.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -369,5 +370,27 @@ public class UserHxController {
         out.close();
     }
 
+    /**
+     * 导出横项的Excel
+     */
+    @RequestMapping("ExportHxExcel")
+    public void ExportHxExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Users user = (Users) session.getAttribute("user");
+
+        ExcelExport<Hx> excel = new ExcelExport<Hx>();
+
+        String[] headers = {"合同名称", "合作对象", "开始时间", "结束时间", "经费(元)"};
+
+        List<Hx> list;
+        if ("admin".equals(user.getUtype())) {
+            list = userHxService.selectExcelHx();
+            String mimeType = request.getServletContext().getMimeType("横项.xls");
+            excel.exportExcel("横项.xls", headers, list, response, mimeType);
+        } else {
+            list = userHxService.selectExcelHx(user.getUid());
+            String mimeType = request.getServletContext().getMimeType("横项.xls");
+            excel.exportExcel(user.getUid() + "_横项.xls", headers, list, response, mimeType);
+        }
+    }
 
 }

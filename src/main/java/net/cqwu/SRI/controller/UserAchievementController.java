@@ -387,7 +387,7 @@ public class UserAchievementController {
 
         ExcelExport<Achievement> excel = new ExcelExport<Achievement>();
         //表格的头部信息
-        String[] headers = {"ID", "成果名称", "授予单位", "获得时间", "级别", "类型"};
+        String[] headers = {"成果名称", "授予单位", "获得时间", "级别", "类型"};
         //从数据库查到的数据
         List<Achievement> list;
         if ("admin".equals(user.getUtype())) {

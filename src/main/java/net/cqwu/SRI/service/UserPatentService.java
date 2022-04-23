@@ -61,4 +61,15 @@ public interface UserPatentService {
      * 修改某个专利
      */
     boolean UpdatePatent(Patent patent, String oldPid);
+
+    /**
+     * 查询所有专利的Excel数据
+     */
+    List<Patent> selectExcelPatent();
+
+    /**
+     * 查询某个用户的所有专利的Excel数据
+     * @param uid 用户ID
+     */
+    List<Patent> selectExcelPatent(String uid);
 }

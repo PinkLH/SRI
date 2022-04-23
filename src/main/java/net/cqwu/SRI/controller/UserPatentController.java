@@ -4,12 +4,12 @@ import net.cqwu.SRI.entity.Pp;
 import net.cqwu.SRI.entity.Patent;
 import net.cqwu.SRI.entity.Users;
 import net.cqwu.SRI.service.UserPatentService;
+import net.cqwu.SRI.util.ExcelExport;
 import net.cqwu.SRI.util.UpfilePath;
 import net.cqwu.SRI.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -392,6 +393,30 @@ public class UserPatentController {
             zipUtil.toZip(pfileList, out);
         }
         out.close();
+    }
+
+
+    /**
+     * 导出专利的Excel
+     */
+    @RequestMapping("ExportPatentExcel")
+    public void ExportPatentExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Users user = (Users) session.getAttribute("user");
+
+        ExcelExport<Patent> excel = new ExcelExport<Patent>();
+
+        String[] headers = {"专利号/申请号", "专利名称", "专利申请时间/授权时间", "专利状态", "专利权人"};
+
+        List<Patent> list;
+        if ("admin".equals(user.getUtype())) {
+            list = userPatentService.selectExcelPatent();
+            String mimeType = request.getServletContext().getMimeType("专利.xls");
+            excel.exportExcel("专利.xls", headers, list, response, mimeType);
+        } else {
+            list = userPatentService.selectExcelPatent(user.getUid());
+            String mimeType = request.getServletContext().getMimeType("专利.xls");
+            excel.exportExcel(user.getUid() + "_专利.xls", headers, list, response, mimeType);
+        }
     }
 
 }

@@ -1,8 +1,9 @@
 package net.cqwu.SRI.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Thesis {
+public class Thesis implements Serializable {
 	private int tid;
 	private String tname;
 	private String tperiodical;

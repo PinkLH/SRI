@@ -1,8 +1,9 @@
 package net.cqwu.SRI.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Hx {
+public class Hx implements Serializable {
     private int hid;
     private String hname;
     private String hobject;

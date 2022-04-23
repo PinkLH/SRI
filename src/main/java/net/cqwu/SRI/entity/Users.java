@@ -1,6 +1,8 @@
 package net.cqwu.SRI.entity;
 
-public class Users {
+import java.io.Serializable;
+
+public class Users implements Serializable {
 	private String uid;
 	private String upwd;
 	private String uname;

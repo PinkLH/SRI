@@ -54,7 +54,7 @@
         <div class="head">
             <table id="form" width="100%" align="center" onsubmit="return false">
                 <tr height="50px">
-                    <td width="40%">
+                    <td width="30%">
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">论文名称：</label>
                             <div class="layui-input-inline">
@@ -64,7 +64,7 @@
                         </div>
                     </td>
 
-                    <td width="40%" align="left">
+                    <td width="30%" align="left">
 
                         <div class="layui-form-item" style="margin-bottom: 0px;">
                             <label class="layui-form-label">论文类别：</label>
@@ -74,7 +74,7 @@
                                     <option value="all">全部</option>
                                     <option value="一区">一区</option>
                                     <option value="二区">二区</option>
-                                    <option value="三区/四区">三区/四区</option>
+                                    <option value="三区,四区">三区,四区</option>
                                     <option value="公开区">公开区</option>
                                     <option value="核心区">核心区</option>
                                     <option value="IE会议论文">IE会议论文</option>

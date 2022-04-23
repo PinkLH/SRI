@@ -40,4 +40,14 @@ public interface UserAworkService {
      * 通过名称查询学术著作
      */
     List<Awork> selectAwork(String wname, String utype, String uid);
+
+    /**
+     * 查询所有学术著作的Excel数据
+     */
+    List<Awork> selectExcelAwork();
+
+    /**
+     * 查询某个用户的所有学术著作的Excel数据
+     */
+    List<Awork> selectExcelAwork(String uid);
 }

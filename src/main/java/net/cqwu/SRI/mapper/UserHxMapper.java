@@ -55,4 +55,15 @@ public interface UserHxMapper {
     boolean UpdateHx(String hname, String hobject, Date hbtime, Date hetime,
                      int hmoney, String haddress, int hid);
 
+    /**
+     * 查询某个用户的所有横项的Excel数据
+     */
+    List<Hx> selectExcelHx();
+
+    /**
+     * 查询某个用户的所有横项
+     *
+     * @param uid 用户ID
+     */
+    List<Hx> selectAllUserExcelHx(String uid);
 }

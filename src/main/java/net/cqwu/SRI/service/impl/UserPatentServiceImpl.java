@@ -139,4 +139,22 @@ public class UserPatentServiceImpl implements UserPatentService {
                 oldPid
         );
     }
+
+    /**
+     * 查询所有专利的Excel数据
+     */
+    @Override
+    public List<Patent> selectExcelPatent() {
+        return userPatentMapper.selectExcelPatent();
+    }
+
+    /**
+     * 查询某个用户的所有专利的Excel数据
+     *
+     * @param uid 用户ID
+     */
+    @Override
+    public List<Patent> selectExcelPatent(String uid) {
+        return userPatentMapper.selectAllUserExcelPatent(uid);
+    }
 }

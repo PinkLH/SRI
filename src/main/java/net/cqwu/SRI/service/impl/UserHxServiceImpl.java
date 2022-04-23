@@ -93,4 +93,22 @@ public class UserHxServiceImpl implements UserHxService {
         );
     }
 
+    /**
+     * 查询某个用户的所有横项的Excel数据
+     */
+    @Override
+    public List<Hx> selectExcelHx() {
+        return userHxMapper.selectExcelHx();
+    }
+
+    /**
+     * 查询某个用户的所有横项
+     *
+     * @param uid 用户ID
+     */
+    @Override
+    public List<Hx> selectExcelHx(String uid) {
+        return userHxMapper.selectAllUserExcelHx(uid);
+    }
+
 }

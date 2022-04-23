@@ -40,4 +40,15 @@ public interface UserHxService {
      * 修改某个横项
      */
     boolean UpdateHx(Hx Hx);
+
+    /**
+     * 查询某个用户的所有横项的Excel数据
+     */
+    List<Hx> selectExcelHx();
+
+    /**
+     * 查询某个用户的所有横项
+     * @param uid 用户ID
+     */
+    List<Hx> selectExcelHx(String uid);
 }

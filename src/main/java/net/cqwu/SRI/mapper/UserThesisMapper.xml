@@ -3,6 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.cqwu.SRI.mapper.UserThesisMapper">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.SRI.entity.Thesis">
+        <!--@Table thesis-->
+        <result property="tid" column="tid" jdbcType="INTEGER"/>
+        <result property="tname" column="tname" jdbcType="VARCHAR"/>
+        <result property="tperiodical" column="tperiodical" jdbcType="VARCHAR"/>
+        <result property="ttime" column="ttime" jdbcType="TIMESTAMP"/>
+        <result property="ttype" column="ttype" jdbcType="VARCHAR"/>
+        <result property="taddress" column="taddress" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="BaseExtResultMap" type="net.cqwu.SRI.entity.ext.ThesisDateFormatExpansion"
+               extends="BaseResultMap"/>
+
+    <!-- 查询某个用户的所有论文的Excel数据 -->
+    <select id="selectAllUserExcelThesis" resultMap="BaseExtResultMap">
+        select tname, ttime, ttype
+        from thesis
+        where uid = #{param1}
+    </select>
+
+    <!-- 查询所有论文的Excel数据 -->
+    <select id="selectExcelThesis" resultMap="BaseExtResultMap">
+        select tname, ttime, ttype
+        from thesis
+    </select>
+
+
     <!--条件查询论文-->
     <select id="selectThesisCondition" resultType="net.cqwu.SRI.entity.Thesis">
         select * from thesis

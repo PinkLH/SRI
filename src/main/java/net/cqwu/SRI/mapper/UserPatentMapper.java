@@ -71,4 +71,14 @@ public interface UserPatentMapper {
      */
     boolean UpdatePatent(String pid, String pname, String pstate, Date ptime, String ppatentee, String paddress, String oldPid);
 
+    /**
+     * 查询所有专利的Excel数据
+     */
+    List<Patent> selectExcelPatent();
+
+    /**
+     * 查询某个用户的所有专利的Excel数据
+     * @param uid 用户ID
+     */
+    List<Patent> selectAllUserExcelPatent(String uid);
 }

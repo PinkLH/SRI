@@ -101,7 +101,8 @@
                     <td align="right">
                         <button type="submit">查询</button>
                         <button type="button" onclick="window.location.href='DownloadWork'">导出附件</button>
-                        <button type="button" onclick="window.location.href='ExportWorkExcel'">导出Excel</button>
+                        <button type="button" onclick="window.location.href='ExportSworkExcel'">软件Excel</button>
+                        <button type="button" onclick="window.location.href='ExportAworkExcel'">学术Excel</button>
                     </td>
                 </tr>
             </table>

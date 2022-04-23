@@ -1,8 +1,36 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.cqwu.SRI.mapper.UserPatentMapper">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.SRI.entity.Patent">
+        <!--@Table patent-->
+        <result property="pid" column="pid" jdbcType="VARCHAR"/>
+        <result property="pname" column="pname" jdbcType="VARCHAR"/>
+        <result property="pstate" column="pstate" jdbcType="VARCHAR"/>
+        <result property="ptime" column="ptime" jdbcType="TIMESTAMP"/>
+        <result property="ppatentee" column="ppatentee" jdbcType="VARCHAR"/>
+        <result property="paddress" column="paddress" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="BaseExtResultMap" type="net.cqwu.SRI.entity.ext.PatentDateFormatExpansion"
+               extends="BaseResultMap"/>
+
+    <!-- 查询某个用户的所有专利的Excel数据 -->
+    <select id="selectAllUserExcelPatent" resultMap="BaseExtResultMap">
+        select pid, pname, ptime, pstate, ppatentee
+        from patent
+        where uid = #{param1}
+    </select>
+
+    <!-- 查询所有专利的Excel数据 -->
+    <select id="selectExcelPatent" resultMap="BaseExtResultMap">
+        select pid, pname, ptime, pstate, ppatentee
+        from patent
+    </select>
+
     <select id="selectPatentCondition" resultType="net.cqwu.SRI.entity.Patent">
         select * from patent
         <where>

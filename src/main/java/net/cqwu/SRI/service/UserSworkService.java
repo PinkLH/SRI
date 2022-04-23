@@ -40,4 +40,14 @@ public interface UserSworkService {
      * 修改软件著作
      */
     boolean UpdateSwork(Swork swork, String oldswid);
+
+    /**
+     * 查询Excel导出的数据
+     */
+    List<Swork> selectExcelSwork();
+
+    /**
+     * 查询某个用户导出的Excel数据
+     */
+    List<Swork> selectExcelSwork(String uid);
 }

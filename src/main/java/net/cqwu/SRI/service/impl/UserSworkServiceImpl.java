@@ -85,4 +85,21 @@ public class UserSworkServiceImpl implements UserSworkService {
                 oldswid
         );
     }
+
+    /**
+     * 查询Excel导出的数据
+     */
+    @Override
+    public List<Swork> selectExcelSwork() {
+        return userSworkMapper.selectExcelSwork();
+    }
+
+    /**
+     * 查询某个用户导出的Excel数据
+     * @param uid 用户ID
+     */
+    @Override
+    public List<Swork> selectExcelSwork(String uid) {
+        return userSworkMapper.selectAllUserExcelSwork(uid);
+    }
 }

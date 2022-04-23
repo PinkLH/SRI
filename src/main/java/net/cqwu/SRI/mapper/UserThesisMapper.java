@@ -53,4 +53,14 @@ public interface UserThesisMapper {
     boolean UpdateThesis(String tname, String tperiodical, Date ttime, String ttype, String taddress, int tid);
 
 
+    /**
+     * 查询所有论文的Excel数据
+     */
+    List<Thesis> selectExcelThesis();
+
+    /**
+     * 查询某个用户的所有论文的Excel数据
+     * @param uid 用户ID
+     */
+    List<Thesis> selectAllUserExcelThesis(String uid);
 }

@@ -92,4 +92,22 @@ public class UserThesisServiceImpl implements UserThesisService {
         );
     }
 
+    /**
+     * 查询所有论文的Excel数据
+     */
+    @Override
+    public List<Thesis> selectExcelThesis() {
+        return userThesisMapper.selectExcelThesis();
+    }
+
+    /**
+     * 查询某个用户的所有论文的Excel数据
+     *
+     * @param uid 用户ID
+     */
+    @Override
+    public List<Thesis> selectExcelThesis(String uid) {
+        return userThesisMapper.selectAllUserExcelThesis(uid);
+    }
+
 }

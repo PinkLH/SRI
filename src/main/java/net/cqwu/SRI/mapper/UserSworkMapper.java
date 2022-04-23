@@ -50,4 +50,14 @@ public interface UserSworkMapper {
      * 修改软件著作
      */
     boolean UpdateSwork(String swid, String swname, String swperson, String swaddress, String oldswid);
+
+    /**
+     * 查询Excel导出的数据
+     */
+    List<Swork> selectExcelSwork();
+
+    /**
+     * 查询某个用户导出的Excel数据
+     */
+    List<Swork> selectAllUserExcelSwork(String uid);
 }

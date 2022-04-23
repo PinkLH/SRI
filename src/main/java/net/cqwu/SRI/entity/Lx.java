@@ -1,8 +1,9 @@
 package net.cqwu.SRI.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Lx {
+public class Lx implements Serializable {
     private String lid;
     private String lname;
     private String ltype;

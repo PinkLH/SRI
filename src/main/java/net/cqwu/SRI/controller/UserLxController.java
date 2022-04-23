@@ -1,10 +1,10 @@
 package net.cqwu.SRI.controller;
 
-import net.cqwu.SRI.entity.Achievement;
-import net.cqwu.SRI.entity.Lp;
 import net.cqwu.SRI.entity.Lx;
+import net.cqwu.SRI.entity.Lp;
 import net.cqwu.SRI.entity.Users;
 import net.cqwu.SRI.service.UserLxService;
+import net.cqwu.SRI.util.ExcelExport;
 import net.cqwu.SRI.util.UpfilePath;
 import net.cqwu.SRI.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -414,5 +415,29 @@ public class UserLxController {
             zipUtil.toZip(lfileList, out);
         }
         out.close();
+    }
+
+
+
+    /**
+     * 导出立项的Excel
+     */
+    @RequestMapping("ExportLxExcel")
+    public void ExportLxExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Users user = (Users) session.getAttribute("user");
+
+        ExcelExport<Lx> excel = new ExcelExport<Lx>();
+
+        String[] headers = {"项目编号", "项目名称", "项目级别", "负责人", "开始时间","结束时间","经费"};
+        List<Lx> list;
+        if ("admin".equals(user.getUtype())) {
+            list = userLxService.selectExcelLx();
+            String mimeType = request.getServletContext().getMimeType("立项.xls");
+            excel.exportExcel("立项.xls", headers, list, response, mimeType);
+        } else {
+            list = userLxService.selectExcelLx(user.getUid());
+            String mimeType = request.getServletContext().getMimeType("立项.xls");
+            excel.exportExcel(user.getUid() + "_立项.xls", headers, list, response, mimeType);
+        }
     }
 }

@@ -20,13 +20,11 @@ public interface UserAchievementMapper {
     /**
      * 查询所有成果获奖的Excel数据
      */
-    @Select("select aid,aname,alevel,atype,aunit,atime from achievement")
     List<Achievement> selectExcelAchievement();
 
     /**
      * 查询某个用户的所有成果获奖的Excel数据
      */
-    @Select("select aid,aname,alevel,atype,aunit,atime from achievement where uid = #{param1}")
     List<Achievement> selectAllUserExcelAchievement(String uid);
 
     /**

@@ -5,6 +5,7 @@ import net.cqwu.SRI.entity.Swork;
 import net.cqwu.SRI.entity.Users;
 import net.cqwu.SRI.service.UserAworkService;
 import net.cqwu.SRI.service.UserSworkService;
+import net.cqwu.SRI.util.ExcelExport;
 import net.cqwu.SRI.util.UpfilePath;
 import net.cqwu.SRI.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -613,29 +615,72 @@ public class UserWorkController {
         ZipUtil zipUtil = new ZipUtil();
         if ("user".equals(utype)) {
             zipUtil.toZip(userPath, out, true);
-        }else{
+        } else {
             List<Swork> sworkList = userSworkService.selectSwork();
             List<Awork> aworkList = userAworkService.selectAwork();
             List<File> wfileList = new ArrayList<>();
-            for(Swork sw : sworkList){
+            for (Swork sw : sworkList) {
                 wfileList.add(new File(syspath + sw.getSwaddress()));
             }
-            for(Awork aw : aworkList){
+            for (Awork aw : aworkList) {
                 wfileList.add(new File(syspath + aw.getAwaddress()));
             }
             zipUtil.toZip(wfileList, out);
         }
         out.close();
     }
-//
-//    /**
-//     * 导出著作Excel表格
-//     */
-//    @RequestMapping("WorkExcel")
-//    public void WorkExcel(HttpSession session, HttpServletRequest request, HttpServletResponse response){
-//        String syspath = UpfilePath.getSRIPath(request);
-//
-//
-//    }
+
+    /**
+     * 导出软件著作Excel表格
+     */
+    @RequestMapping("ExportSworkExcel")
+    public void ExportSworkExcel(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Users user = (Users) session.getAttribute("user");
+
+        ExcelExport<Swork> swExcel = new ExcelExport<Swork>();
+//        ExcelExport<Awork> awExcel = new ExcelExport<Awork>();
+
+        String[] headers = {"软件名称", "登记号", "著作权人"};
+
+        List<Swork> swList;
+
+        if ("admin".equals(user.getUtype())) {
+            swList = userSworkService.selectExcelSwork();
+            String mimeType = request.getServletContext().getMimeType("软件著作.xls");
+            swExcel.exportExcel("软件著作.xls", headers, swList, response, mimeType);
+        } else {
+            swList = userSworkService.selectExcelSwork(user.getUid());
+            String mimeType = request.getServletContext().getMimeType("软件著作.xls");
+            swExcel.exportExcel(user.getUid() + "_软件著作.xls", headers, swList, response, mimeType);
+        }
+
+
+    }
+
+
+    /**
+     * 导出学术著作Excel表格
+     */
+    @RequestMapping("ExportAworkExcel")
+    public void ExportAworkExcel(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Users user = (Users) session.getAttribute("user");
+
+        ExcelExport<Awork> awExcel = new ExcelExport<Awork>();
+
+        String[] headers = {"著作名称", "出版日期", "出版社", "编辑人"};
+
+        List<Awork> awList;
+
+        if ("admin".equals(user.getUtype())) {
+            awList = userAworkService.selectExcelAwork();
+            String mimeType = request.getServletContext().getMimeType("学术著作.xls");
+            awExcel.exportExcel("学术著作.xls", headers, awList, response, mimeType);
+        } else {
+            awList = userAworkService.selectExcelAwork(user.getUid());
+            String mimeType = request.getServletContext().getMimeType("学术著作.xls");
+            awExcel.exportExcel(user.getUid() + "_学术著作.xls", headers, awList, response, mimeType);
+        }
+    }
+
 
 }

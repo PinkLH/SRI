@@ -87,4 +87,21 @@ public class UserAworkServiceImpl implements UserAworkService {
         return userAworkMapper.selectAworkCondition(wname, utype, uid);
     }
 
+    /**
+     * 查询所有学术著作的Excel数据
+     */
+    @Override
+    public List<Awork> selectExcelAwork() {
+        return userAworkMapper.selectExcelAwork();
+    }
+
+    /**
+     * 查询某个用户的所有学术著作的Excel数据
+     * @param uid 用户ID
+     */
+    @Override
+    public List<Awork> selectExcelAwork(String uid) {
+        return userAworkMapper.selectAllUserExcelAwork(uid);
+    }
+
 }

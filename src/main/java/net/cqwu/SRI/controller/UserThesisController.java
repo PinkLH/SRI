@@ -3,6 +3,7 @@ package net.cqwu.SRI.controller;
 import net.cqwu.SRI.entity.Thesis;
 import net.cqwu.SRI.entity.Users;
 import net.cqwu.SRI.service.UserThesisService;
+import net.cqwu.SRI.util.ExcelExport;
 import net.cqwu.SRI.util.UpfilePath;
 import net.cqwu.SRI.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -358,4 +360,30 @@ public class UserThesisController {
         }
         out.close();
     }
+
+    /**
+     * 导出论文的excel
+     */
+    @RequestMapping("ExportThesisExcel")
+    public void ExportThesisExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+        Users user = (Users) session.getAttribute("user");
+
+        ExcelExport<Thesis> excel = new ExcelExport<Thesis>();
+        //表格的头部信息
+        String[] headers = {"论文名称", "发表时间", "论文类别"};
+        //从数据库查到的数据
+        List<Thesis> list;
+        if ("admin".equals(user.getUtype())) {
+            list = userThesisService.selectExcelThesis();
+            String mimeType = request.getServletContext().getMimeType("论文.xls");
+            excel.exportExcel("论文.xls", headers, list, response, mimeType);
+        } else {
+            list = userThesisService.selectExcelThesis(user.getUid());
+            String mimeType = request.getServletContext().getMimeType("论文.xls");
+            excel.exportExcel(user.getUid() + "_论文.xls", headers, list, response, mimeType);
+        }
+
+
+    }
+    
 }

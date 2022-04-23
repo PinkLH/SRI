@@ -60,4 +60,14 @@ public interface UserLxService {
      * 修改某个立项
      */
     boolean UpdateLx(Lx lx, String oldLid);
+
+    /**
+     * 查询所有立项的Excel数据
+     */
+    List<Lx> selectExcelLx();
+
+    /**
+     * 查询某个用户的所有立项的Excel数据
+     */
+    List<Lx> selectExcelLx(String uid);
 }

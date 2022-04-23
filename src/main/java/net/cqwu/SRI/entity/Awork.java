@@ -1,8 +1,9 @@
 package net.cqwu.SRI.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Awork {
+public class Awork implements Serializable {
     private int awid;
     private String awname;
     private String awperson;

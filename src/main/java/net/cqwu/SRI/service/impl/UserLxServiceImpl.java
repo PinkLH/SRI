@@ -143,4 +143,22 @@ public class UserLxServiceImpl implements UserLxService {
                 oldLid
         );
     }
+
+    /**
+     * 查询所有立项的Excel数据
+     */
+    @Override
+    public List<Lx> selectExcelLx() {
+        return userLxMapper.selectExcelLx();
+    }
+
+    /**
+     * 查询某个用户的所有立项的Excel数据
+     *
+     * @param uid
+     */
+    @Override
+    public List<Lx> selectExcelLx(String uid) {
+        return userLxMapper.selectAllUserExcelLx(uid);
+    }
 }

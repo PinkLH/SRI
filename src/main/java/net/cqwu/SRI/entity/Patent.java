@@ -1,8 +1,9 @@
 package net.cqwu.SRI.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Patent {
+public class Patent implements Serializable {
 	private String pid;
 	private String pname;
 	private String pstate;

@@ -1,9 +1,36 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.cqwu.SRI.mapper.UserSworkMapper">
-    <!--??????-->
+
+    <resultMap id="BaseResultMap" type="net.cqwu.SRI.entity.Swork">
+        <!--@Table swork-->
+        <result property="swid" column="swid" jdbcType="VARCHAR"/>
+        <result property="swname" column="swname" jdbcType="VARCHAR"/>
+        <result property="swperson" column="swperson" jdbcType="VARCHAR"/>
+        <result property="swaddress" column="swaddress" jdbcType="VARCHAR"/>
+        <result property="swtime" column="swtime" jdbcType="TIMESTAMP"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="BaseExtResultMap" type="net.cqwu.SRI.entity.ext.SworkDateFormatExpansion"
+               extends="BaseResultMap"/>
+
+    <!-- 查询某个用户的所有软件著作的Excel数据 -->
+    <select id="selectAllUserExcelSwork" resultMap="BaseExtResultMap">
+        select swname,swid,swperson
+        from swork 
+        where uid = #{param1}
+    </select>
+
+    <!-- 查询所有软件著作的Excel数据 -->
+    <select id="selectExcelSwork" resultMap="BaseExtResultMap">
+        select swname,swid,swperson
+        from swork
+    </select>
+
+    <!--条件查询软件著作-->
     <select id="selectSworkCondition" resultType="net.cqwu.SRI.entity.Swork">
         select * from swork
         <where>
@@ -16,7 +43,7 @@
         </where>
     </select>
 
-    <!--??????-->
+    <!--修改软件著作-->
     <update id="UpdateSwork">
         update swork
         <set>

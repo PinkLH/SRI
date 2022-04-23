@@ -40,4 +40,15 @@ public interface UserThesisService {
      * 修改某个论文
      */
     boolean UpdateThesis(Thesis thesis);
+
+    /**
+     * 查询所有论文的Excel数据
+     */
+    List<Thesis> selectExcelThesis();
+
+    /**
+     * 查询某个用户的所有论文的Excel数据
+     * @param uid 用户ID
+     */
+    List<Thesis> selectExcelThesis(String uid);
 }

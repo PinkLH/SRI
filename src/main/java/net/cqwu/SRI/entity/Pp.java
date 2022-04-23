@@ -1,6 +1,8 @@
 package net.cqwu.SRI.entity;
 
-public class Pp {
+import java.io.Serializable;
+
+public class Pp implements Serializable {
 	private String ppid;
 	private String ppname;
 	private String pid;

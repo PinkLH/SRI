@@ -1,8 +1,9 @@
 package net.cqwu.SRI.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Achievement {
+public class Achievement implements Serializable {
 	private int aid;
 	private String aname;
 	private String aunit;
@@ -11,19 +12,6 @@ public class Achievement {
 	private String atype;
 	private String aaddress;
 	private String uid;
-
-	public Achievement() {
-	}
-
-	public Achievement(String aname, String aunit, Date atime, String alevel, String atype, String aaddress, String uid) {
-		this.aname = aname;
-		this.aunit = aunit;
-		this.atime = atime;
-		this.alevel = alevel;
-		this.atype = atype;
-		this.aaddress = aaddress;
-		this.uid = uid;
-	}
 
 	public String getUid() {
 		return uid;

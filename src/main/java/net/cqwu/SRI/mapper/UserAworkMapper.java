@@ -1,10 +1,7 @@
 package net.cqwu.SRI.mapper;
 
 import net.cqwu.SRI.entity.Awork;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
 import java.util.List;
@@ -50,4 +47,14 @@ public interface UserAworkMapper {
      * 修改学术著作
      */
     boolean UpdateAwork(String awname, String awperson, String awpress, Date awtime, String awaddress, int awid);
+
+    /**
+     * 查询所有学术著作的Excel数据
+     */
+    List<Awork> selectExcelAwork();
+
+    /**
+     * 查询某个用户的所有学术著作的Excel数据
+     */
+    List<Awork> selectAllUserExcelAwork(String uid);
 }
