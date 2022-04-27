@@ -48,11 +48,25 @@ $(document).ready(function () {
         $(".UserChoice").toggle(100);
         if (info === true) {
             $(".info_icon").css("transform", "rotate(90deg)");
+            $("#mask").css("display","block");
             info = false;
         } else {
             $(".info_icon").css("transform", "rotate(0deg)");
+            $("#mask").css("display","none");
             info = true;
         }
+    });
+    $("#mask").click(function (){
+        $(".UserChoice").toggle(100);
+        $(".info_icon").css("transform", "rotate(0deg)");
+        $("#mask").css("display","none");
+        info = true;
+    });
+    $("#Choice1-a").click(function (){
+        $(".UserChoice").toggle(100);
+        $(".info_icon").css("transform", "rotate(0deg)");
+        $("#mask").css("display","none");
+        info = true;
     });
     $(".li-a").click(function () {
         liback();

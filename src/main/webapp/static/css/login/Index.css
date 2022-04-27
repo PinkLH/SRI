@@ -245,9 +245,9 @@ nav {
     border: 1px solid #797979;
     border-radius: 10px;
     background-color: #f7f7f7;
-    z-index: 1000;
     display: none;
-    box-shadow: rgba(133, 133, 133, 0.238) 5px 5px 20px 1px
+    box-shadow: rgba(133, 133, 133, 0.238) 5px 5px 20px 1px;
+    z-index: 999999;
 }
 
 .Choice1 {
@@ -311,9 +311,19 @@ nav {
 .page-contant {
     width: 100%;
     height: 100%;
-    box-shadow: rgba(133, 133, 133, 0.238) 0px 0px 20px 1px
+    box-shadow: rgba(133, 133, 133, 0.238) 0px 0px 20px 1px;
 }
-
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*height: 10000px;*/
+    z-index: 9999;
+    /*background-color: rgba(0, 0, 0, .7);*/
+    display: none;
+}
 iframe {
     width: 100%;
     height: 100%;

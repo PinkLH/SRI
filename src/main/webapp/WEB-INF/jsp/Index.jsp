@@ -138,7 +138,7 @@
             </div>
             <div id="UserChoice" class="UserChoice">
                 <div class="Choice1">
-                    <a target="iframe" href="UpdateUserInfo">修改个人信息</a>
+                    <a id="Choice1-a" target="iframe" href="UpdateUserInfo">修改个人信息</a>
                 </div>
                 <div class="Choice2">
                     <a href="loginout">注销</a>
@@ -152,9 +152,12 @@
                 </iframe>
             </div>
         </div>
+
     </div>
 </div>
+<div id="mask" class="mask">
 
+</div>
 </body>
 
 </html>
