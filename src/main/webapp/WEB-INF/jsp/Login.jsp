@@ -18,8 +18,8 @@
 
 <body>
     <header>
-        <a target="_blank" href="http://www.cqwu.net/"><img id="logo" src="static/images/login/loginlogo.svg" alt=""></a>
-        <div id="schoolweb"><a target="_blank" href="http://www.cqwu.net/">学校官网</a></div>
+        <a href="javascript:void(0)"><img id="logo" src="static/images/login/loginlogo.svg" alt=""></a>
+        <div id="schoolweb"><a href="javascript:void(0)">学校官网</a></div>
     </header>
     <article>
         <div id="title">
