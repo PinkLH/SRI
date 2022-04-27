@@ -20,7 +20,7 @@
     <nav>
         <!-- logo图片 -->
         <div class="logo">
-            <a target="_blank" href="http://www.cqwu.net/"><img src="static/images/login/logo3.png" alt=""></a>
+            <a target="_blank" href="http://www.cqwu.net/"><img src="static/images/login/logofin.png" alt=""></a>
         </div>
         <!-- 左侧列表 -->
         <div id="navBox" class="nav-box">

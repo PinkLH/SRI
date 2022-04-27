@@ -18,14 +18,14 @@
 
 <body>
     <header>
-        <a target="_blank" href="http://www.cqwu.net/"><img id="logo" src="static/images/login/loginLogo.svg" alt=""></a>
+        <a target="_blank" href="http://www.cqwu.net/"><img id="logo" src="static/images/login/loginlogo.svg" alt=""></a>
         <div id="schoolweb"><a target="_blank" href="http://www.cqwu.net/">学校官网</a></div>
     </header>
     <article>
         <div id="title">
-            <h1>科研信息管理系统</h1>
+            <h1>轻松便捷的科研管理助手</h1>
             <br>
-            <h2>Scientific research information<br>management system</h2>
+            <h2>Easy and convenient<br>scientific research management platform</h2>
         </div>
         <form id="form1" action="loginform" method="post">
             <div id="login">

@@ -21,7 +21,7 @@ function upList() {
 function downList(n) {
     if (flag[n] === true && flagIcon[n - 1] === true) {
         upList();
-        test[n].style.height = '120px';
+        test[n].style.height = '180px';
         test[n].style.background = '#D7EAFB';
         icon[n - 1].style.transform = "rotate(90deg)";
         flag[n] = false;

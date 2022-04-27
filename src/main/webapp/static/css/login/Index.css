@@ -82,11 +82,12 @@ nav {
 
 #navBox > div > div > ul > li {
     width: 100px;
-    height: 25px;
+    height: 40px;
     text-align: center;
     list-style: none;
     margin-left: 70px;
     transition: margin-left .5s;
+    line-height: 60px;
 }
 
 .main_box {
