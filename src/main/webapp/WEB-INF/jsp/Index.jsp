@@ -122,7 +122,7 @@
     <div class="right">
         <div class="nav-top">
             <div class="Main-title">
-                <a>科研信息管理系统</a>
+                <a>欢迎您：${sessionScope.user.uname}</a>
             </div>
             <button class="out" type="button" onclick="window.location.href='DownloadAllInfo'">全部信息导出</button>
             <div class="User">
