@@ -18,7 +18,7 @@
 
 <body>
     <header>
-        <a href="javascript:void(0)"><img id="logo" src="static/images/login/loginlogo.svg" alt=""></a>
+        <a href="javascript:void(0)"><img id="logo" src="static/images/login/logowhite1.png" alt=""></a>
         <div id="schoolweb"><a href="javascript:void(0)">学校官网</a></div>
     </header>
     <article>
