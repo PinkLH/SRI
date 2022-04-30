@@ -97,7 +97,7 @@
     <footer>
         <div id="foot">
             <p>Copyright<span class="iconfont icon-banquan" style="margin-left: 3px;margin-right: 3px;"></span>
-                Chongqing University Of Arts And Sciences All Rights Reserved</p>
+                Yu Guo Yuan All Rights Reserved</p>
         </div>
     </footer>
 </body>
