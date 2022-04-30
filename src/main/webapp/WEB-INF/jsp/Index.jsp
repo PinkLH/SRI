@@ -20,7 +20,7 @@
     <nav>
         <!-- logo图片 -->
         <div class="logo">
-            <a href="javascript:void(0)"><img src="static/images/login/logowhite1.png" alt=""></a>
+            <a href="javascript:void(0)"><img src="static/images/login/logoSRI.svg" alt=""></a>
         </div>
         <!-- 左侧列表 -->
         <div id="navBox" class="nav-box">
