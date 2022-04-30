@@ -415,7 +415,10 @@
             top: 5
         },
         legend: {
-            top: 'bottom'
+            bottom: '10',
+            textStyle: {
+                fontSize: 12
+            }
         },
         tooltip: {
             trigger: 'item',
