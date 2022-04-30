@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="icon" href="static/images/favicon.png" mce_href="static/images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="static/images/headicon.png" mce_href="static/images/headicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="static/css/login/Login.css">
     <link rel="stylesheet" href="static/font/login/iconfont.css">
     <script src="static/js/jq/jquery-3.5.1.min.js"></script>
