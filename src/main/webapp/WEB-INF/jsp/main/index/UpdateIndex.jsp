@@ -41,16 +41,19 @@
     var main1 = document.getElementById("main1");
     var main2 = document.getElementById("main2");
     var main3 = document.getElementById("main3");
+    var main4 = document.getElementById("main4");
 
     var myChart1 = echarts.init(main1);
     // var myChart2 = echarts.init(main2, 'dark');
     var myChart2 = echarts.init(main2);
     var myChart3 = echarts.init(main3);
+    var myChart4 = echarts.init(main4);
 
     window.onresize = function () {
         myChart1.resize();
         myChart2.resize();
         myChart3.resize();
+        myChart4.resize();
     };
 
     var app1 = {};
@@ -58,6 +61,7 @@
     var option1;
     var option2;
     var option3;
+    var option4;
 
     const posList = [
         'left',
@@ -314,12 +318,6 @@
                     }
                 },
                 data: [
-<%--                    <c:forEach var="i" items="dataValue2" varStatus="status">--%>
-<%--                        {value: dataValue2[${status.index}], name: dataName2[${status.index}]},--%>
-<%--                    </c:forEach>--%>
-
-
-
                     {value: dataValue2[0], name: dataName2[0]},
                     {value: dataValue2[1], name: dataName2[1]},
                     {value: dataValue2[2], name: dataName2[2]},
@@ -410,9 +408,54 @@
     };
 
 
+    option4 = {
+        title: {
+            text: '类别分布',
+            left: 'center',
+            top: 5
+        },
+        legend: {
+            top: 'bottom'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {c} 人 ({d}%)'
+        },
+        series: [
+            {
+                name: 'Access From',
+                type: 'pie',
+                radius: ['40%', '65%'],
+                selectedMode: 'single',
+                avoidLabelOverlap: true,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                data: [
+                    {value: ${lxSum}, name: '立项'},
+                    {value: ${hxSum}, name: '横项'},
+                    {value: ${thesisSum}, name: '论文'},
+                    {value: ${workSum}, name: '著作'},
+                    {value: ${patentSum}, name: '专利'},
+                    {value: ${achievementSum}, name: '成果获奖'}
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    }
+
     option1 && myChart1.setOption(option1);
     option2 && myChart2.setOption(option2);
     option3 && myChart3.setOption(option3);
+    option4 && myChart4.setOption(option4);
 </script>
 </body>
 

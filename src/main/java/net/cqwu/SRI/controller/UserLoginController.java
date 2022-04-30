@@ -127,16 +127,25 @@ public class UserLoginController {
         String uid = user.getUid();
         String utype = user.getUtype();
         int[] totalNum;
+        int sum = 0;
         int[] num = userLoginService.selectAchievementCount(uid, utype, cal.get(Calendar.YEAR));
         List<Integer> intNum = Arrays.stream(num).boxed().collect(Collectors.toList());
         model.addAttribute("achievementNum", intNum);
-
+        for (int i : num) {
+            sum += i;
+        }
+        model.addAttribute("achievementSum", sum);
+        sum = 0;
         totalNum = num;
 
         num = userLoginService.selectLxCount(uid, utype, cal.get(Calendar.YEAR));
         intNum = Arrays.stream(num).boxed().collect(Collectors.toList());
         model.addAttribute("lxNum", intNum);
-
+        for (int i : num) {
+            sum += i;
+        }
+        model.addAttribute("lxSum", sum);
+        sum = 0;
         for (int i = 0; i < totalNum.length; i++) {
             totalNum[i] += num[i];
         }
@@ -144,7 +153,11 @@ public class UserLoginController {
         num = userLoginService.selectHxCount(uid, utype, cal.get(Calendar.YEAR));
         intNum = Arrays.stream(num).boxed().collect(Collectors.toList());
         model.addAttribute("hxNum", intNum);
-
+        for (int i : num) {
+            sum += i;
+        }
+        model.addAttribute("hxSum", sum);
+        sum = 0;
         for (int i = 0; i < totalNum.length; i++) {
             totalNum[i] += num[i];
         }
@@ -152,7 +165,11 @@ public class UserLoginController {
         num = userLoginService.selectPatentCount(uid, utype, cal.get(Calendar.YEAR));
         intNum = Arrays.stream(num).boxed().collect(Collectors.toList());
         model.addAttribute("patentNum", intNum);
-
+        for (int i : num) {
+            sum += i;
+        }
+        model.addAttribute("patentSum", sum);
+        sum = 0;
         for (int i = 0; i < totalNum.length; i++) {
             totalNum[i] += num[i];
         }
@@ -160,7 +177,11 @@ public class UserLoginController {
         num = userLoginService.selectThesisCount(uid, utype, cal.get(Calendar.YEAR));
         intNum = Arrays.stream(num).boxed().collect(Collectors.toList());
         model.addAttribute("thesisNum", intNum);
-
+        for (int i : num) {
+            sum += i;
+        }
+        model.addAttribute("thesisSum", sum);
+        sum = 0;
         for (int i = 0; i < totalNum.length; i++) {
             totalNum[i] += num[i];
         }
@@ -168,6 +189,10 @@ public class UserLoginController {
         num = userLoginService.selectWorkCount(uid, utype, cal.get(Calendar.YEAR));
         intNum = Arrays.stream(num).boxed().collect(Collectors.toList());
         model.addAttribute("workNum", intNum);
+        for (int i : num) {
+            sum += i;
+        }
+        model.addAttribute("workSum", sum);
         for (int i = 0; i < totalNum.length; i++) {
             totalNum[i] += num[i];
         }
