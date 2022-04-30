@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -16,22 +17,47 @@
 
 <body>
 <div class="all">
-    <div id="main" style="height: 100%"></div>
+    <div class="main_box">
+        <div id="main1"></div>
+    </div>
+    <div class="main_box">
+        <div id="main2" style="padding: 0"></div>
+        <%--        <div id="main2"></div>--%>
+    </div>
+    <div class="main_box">
+        <div id="main3"></div>
+    </div>
+    <div class="main_box">
+        <div id="main4"></div>
+    </div>
+
+
 </div>
 <script src="static/js/echars/echarts.min.js"></script>
 <script>
     var today = new Date();
     var todayYear = today.getFullYear();
-    //alert(todayYear);
-    var main = document.getElementById("main");
-    var myChart = echarts.init(main);
+
+    var main1 = document.getElementById("main1");
+    var main2 = document.getElementById("main2");
+    var main3 = document.getElementById("main3");
+
+    var myChart1 = echarts.init(main1);
+    // var myChart2 = echarts.init(main2, 'dark');
+    var myChart2 = echarts.init(main2);
+    var myChart3 = echarts.init(main3);
+
     window.onresize = function () {
-        myChart.resize();
+        myChart1.resize();
+        myChart2.resize();
+        myChart3.resize();
     };
-    var app = {};
 
-    var option;
+    var app1 = {};
 
+    var option1;
+    var option2;
+    var option3;
 
     const posList = [
         'left',
@@ -48,7 +74,7 @@
         'insideBottomLeft',
         'insideBottomRight'
     ];
-    app.configParameters = {
+    app1.configParameters = {
         rotate: {
             min: -90,
             max: 90
@@ -78,7 +104,7 @@
             max: 100
         }
     };
-    app.config = {
+    app1.config = {
         rotate: 0,
         align: 'center',
         verticalAlign: 'middle',
@@ -86,13 +112,13 @@
         distance: 10,
         onChange: function () {
             const labelOption = {
-                rotate: app.config.rotate,
-                align: app.config.align,
-                verticalAlign: app.config.verticalAlign,
-                position: app.config.position,
-                distance: app.config.distance
+                rotate: app1.config.rotate,
+                align: app1.config.align,
+                verticalAlign: app1.config.verticalAlign,
+                position: app1.config.position,
+                distance: app1.config.distance
             };
-            myChart.setOption({
+            myChart1.setOption({
                 series: [
                     {
                         label: labelOption
@@ -112,19 +138,24 @@
     };
     const labelOption = {
         show: true,
-        position: app.config.position,
-        distance: app.config.distance,
-        align: app.config.align,
-        verticalAlign: app.config.verticalAlign,
-        rotate: app.config.rotate,
+        position: app1.config.position,
+        distance: app1.config.distance,
+        align: app1.config.align,
+        verticalAlign: app1.config.verticalAlign,
+        rotate: app1.config.rotate,
         formatter: '{c}',
         fontSize: 14
     };
     const itemStyleOption = {
-        borderRadius: [5, 5, 0, 0]
+        borderRadius: [4, 4, 0, 0]
     };
 
-    option = {
+    option1 = {
+        title: {
+            text: '数量分布',
+            left: 'center',
+            top: 5
+        },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -132,11 +163,10 @@
             }
         },
         legend: {
-            orient: 'vertical',
-            left: 'left',
+            bottom: '20',
             data: ['立项', '横项', '论文', '著作', '专利', '成果获奖'],
             textStyle: {
-                fontSize: 14
+                fontSize: 12
             }
         },
         toolbox: {
@@ -144,6 +174,7 @@
             // orient: 'vertical',
             right: '20px',
             // top: 'center',
+            top: 5,
             feature: {
                 mark: {show: true},
                 // dataView: {show: true, readOnly: false},
@@ -194,9 +225,6 @@
                 },
                 data: ${lxNum},
                 itemStyle: itemStyleOption
-                // label: {
-                //     show: true
-                // }
             },
             {
                 name: '横项',
@@ -256,8 +284,135 @@
         ]
     };
 
+    const dataValue2 = [9, 8, 12, 11, 5];
+    const dataName2 = ['小刘', '小王', '小黎', '小明', '小红'];
+    const redPie = ['#611b19', '#842421', '#a22c28', '#b9332e', '#d76662'];
+    const bluePie = ['#1f3879', '#264698', '#2d54b4', '#325dc8', '#6283d7'];
+    option2 = {
 
-    option && myChart.setOption(option);
+        title: {
+            text: '项目数量排名',
+            left: 'center',
+            top: 5
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {c} 个'
+            // formatter: '{b} : {c} 个 ({d}%)'
+        },
+
+        series: [
+            {
+                name: 'Access From',
+                type: 'pie',
+                // color: bluePie,
+                radius: '65%',
+                center: ['50%', '50%'],
+                label: {
+                    textStyle: {
+                        fontSize: 16
+                    }
+                },
+                data: [
+<%--                    <c:forEach var="i" items="dataValue2" varStatus="status">--%>
+<%--                        {value: dataValue2[${status.index}], name: dataName2[${status.index}]},--%>
+<%--                    </c:forEach>--%>
+
+
+
+                    {value: dataValue2[0], name: dataName2[0]},
+                    {value: dataValue2[1], name: dataName2[1]},
+                    {value: dataValue2[2], name: dataName2[2]},
+                    {value: dataValue2[3], name: dataName2[3]},
+                    {value: dataValue2[4], name: dataName2[4]}
+                ].sort(function (a, b) {
+                    return a.value - b.value;
+                }),
+                roseType: 'radius',
+                labelLine: {
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20
+                },
+            }
+        ]
+
+    };
+
+    option3 = {
+        title: {
+            text: '项目总数',
+            left: 'center',
+            top: 5
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        toolbox: {
+            right: '20px',
+            top: 5,
+            feature: {
+                mark: {show: true},
+                // dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        grid: {
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                name: "年份",
+                nameTextStyle: {
+                    fontSize: 14
+                },
+                boundaryGap: false,
+                data: [todayYear - 4, todayYear - 3, todayYear - 2, todayYear - 1, todayYear]
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: "数量",
+                nameTextStyle: {
+                    fontSize: 14
+                },
+            }
+        ],
+        series: [
+            {
+                name: '项目总数',
+                type: 'line',
+                stack: 'Total',
+                // areaStyle: {},
+                label: labelOption,
+                smooth: true,
+                emphasis: {
+                    focus: 'series'
+                },
+                itemStyle: {
+                    borderRadius: [10, 10, 0, 0]
+                },
+                data: ${totalNumList}
+                // data: [23, 22, 27, 19, 28]
+            }
+        ]
+    };
+
+
+    option1 && myChart1.setOption(option1);
+    option2 && myChart2.setOption(option2);
+    option3 && myChart3.setOption(option3);
 </script>
 </body>
 
