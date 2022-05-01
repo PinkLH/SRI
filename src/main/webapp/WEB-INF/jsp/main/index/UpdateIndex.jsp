@@ -422,7 +422,7 @@
         },
         tooltip: {
             trigger: 'item',
-            formatter: '{b} : {c} 人 ({d}%)'
+            formatter: '{b} : {c} 个 ({d}%)'
         },
         series: [
             {
