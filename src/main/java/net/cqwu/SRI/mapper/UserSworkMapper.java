@@ -14,13 +14,13 @@ public interface UserSworkMapper {
     /**
      * 松紧度所有的软件著作
      */
-    @Select("select * from Swork")
+    @Select("select * from swork")
     List<Swork> selectAllSwork();
 
     /**
      * 查询某个用户的所有软件著作
      */
-    @Select("select * from Swork where uid = #{param1}")
+    @Select("select * from swork where uid = #{param1}")
     List<Swork> selectAllUserSwork(String uid);
 
     /**
@@ -32,7 +32,7 @@ public interface UserSworkMapper {
     /**
      * 查询某个软件著作
      */
-    @Select("select * from Swork where swid = #{param1}")
+    @Select("select * from swork where swid = #{param1}")
     Swork selectSworkBySwid(String swid);
 
     /**

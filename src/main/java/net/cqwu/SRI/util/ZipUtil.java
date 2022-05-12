@@ -113,7 +113,7 @@ public class ZipUtil {
                 // 需要保留原来的文件结构时,需要对空文件夹进行处理
                 if (KeepDirStructure) {
                     // 空文件夹的处理
-                    zos.putNextEntry(new ZipEntry(name + "/"));
+                    zos.putNextEntry(new ZipEntry(name + File.separator));
                     // 没有文件，不需要文件的copy
                     zos.closeEntry();
                 }

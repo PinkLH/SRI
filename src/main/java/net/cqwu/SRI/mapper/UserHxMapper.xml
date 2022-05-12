@@ -51,7 +51,7 @@
 
     <!--修改横项-->
     <update id="UpdateHx">
-        update Hx
+        update hx
         <set>
             <if test="#{param1} != null">hname = #{param1},</if>
             <if test="#{param2} != null">hobject = #{param2},</if>
