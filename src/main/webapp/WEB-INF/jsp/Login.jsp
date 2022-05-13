@@ -25,7 +25,7 @@
         <div id="title">
             <h1>轻松便捷的信息管理助手</h1>
             <br>
-            <h2>Easy and convenient<br>information management system</h2>
+            <h2>Easy and Convenient<br>Information Management System</h2>
         </div>
         <form id="form1" action="loginform" method="post">
             <div id="login">
