@@ -27,7 +27,7 @@ public interface UserLxService {
     List<Lx> selectLx(Lx lx, String uid);
 
     /**
-     * 查询某个成果获奖
+     * 查询某个立项
      */
     Lx selectLxByLid(String lid);
 

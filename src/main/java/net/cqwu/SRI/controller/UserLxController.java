@@ -113,6 +113,16 @@ public class UserLxController {
                           String lbyear, String lbmonth, String lbday, String leyear, String lemonth, String leday) throws IOException, ParseException {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+
+        if(userLxService.selectLxByLid(lx.getLid()) != null){
+            out.println("<script type=\"text/javascript\">\r\n"
+                    + "alert(\"已经存在此立项，添加失败！\");"
+                    + "window.location.href = \"AddLx\""
+                    + "</script>");
+            out.close();
+            return;
+        }
+
         String uid = ((Users) session.getAttribute("user")).getUid();
         String lbtime = lbyear + "-" + lbmonth + "-" + lbday;
         String letime = leyear + "-" + lemonth + "-" + leday;

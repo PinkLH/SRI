@@ -328,6 +328,17 @@ public class UserWorkController {
     private void AddSworkInfo(Swork swork, HttpServletResponse response, HttpSession session, HttpServletRequest request, MultipartFile uploadFile) throws IOException {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+
+        if(userSworkService.selectSworkBySwid(swork.getSwid()) != null){
+            out.println("<script type=\"text/javascript\">\r\n"
+                    + "alert(\"已经存在此软件著作，添加失败！\");"
+                    + "window.location.href = \"AddWork\""
+                    + "</script>");
+            out.close();
+            return;
+        }
+
+
         String uid = ((Users) session.getAttribute("user")).getUid();
         String syspath = UpfilePath.getSRIPath(request);
         String path = uid + File.separator + "著作" + File.separator + "软件著作" + File.separator;

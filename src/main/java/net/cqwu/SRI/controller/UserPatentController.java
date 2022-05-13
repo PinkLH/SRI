@@ -105,6 +105,16 @@ public class UserPatentController {
                               String[] ppid, String[] ppname, String year, String month, String day) throws IOException, ParseException {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+
+        if(userPatentService.selectPatentByPid(patent.getPid()) != null){
+            out.println("<script type=\"text/javascript\">\r\n"
+                    + "alert(\"已经存在此专利，添加失败！\");"
+                    + "window.location.href = \"AddPatent\""
+                    + "</script>");
+            out.close();
+            return;
+        }
+
         String uid = ((Users) session.getAttribute("user")).getUid();
         String ptime = year + "-" + month + "-" + day;
         String syspath = UpfilePath.getSRIPath(request);
