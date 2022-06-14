@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.SRI.mapper.UserPatentMapper">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.SRI.entity.Patent">
+        <!--@Table patent-->
+        <result property="pid" column="pid" jdbcType="VARCHAR"/>
+        <result property="pname" column="pname" jdbcType="VARCHAR"/>
+        <result property="pstate" column="pstate" jdbcType="VARCHAR"/>
+        <result property="ptime" column="ptime" jdbcType="TIMESTAMP"/>
+        <result property="ppatentee" column="ppatentee" jdbcType="VARCHAR"/>
+        <result property="paddress" column="paddress" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="BaseExtResultMap" type="net.cqwu.SRI.entity.ext.PatentDateFormatExpansion"
+               extends="BaseResultMap"/>
+
+    <!-- 查询某个用户的所有专利的Excel数据 -->
+    <select id="selectAllUserExcelPatent" resultMap="BaseExtResultMap">
+        select pid, pname, ptime, pstate, ppatentee
+        from patent
+        where uid = #{param1}
+    </select>
+
+    <!-- 查询所有专利的Excel数据 -->
+    <select id="selectExcelPatent" resultMap="BaseExtResultMap">
+        select pid, pname, ptime, pstate, ppatentee
+        from patent
+    </select>
+
+    <select id="selectPatentCondition" resultType="net.cqwu.SRI.entity.Patent">
+        select * from patent
+        <where>
+            <if test="pname != null and pname != ''">
+                pname like CONCAT(CONCAT('%',#{pname},'%'))
+            </if>
+            <if test="pid != ''">
+                and pid = #{pid}
+            </if>
+            <if test="utype != 'admin'">
+                and uid = #{uid}
+            </if>
+        </where>
+    </select>
+
+    <update id="UpdatePatent">
+        update patent
+        <set>
+            <if test="#{param1} != null">pid = #{param1},</if>
+            <if test="#{param2} != null">pname = #{param2},</if>
+            <if test="#{param3} != null">pstate = #{param3},</if>
+            <if test="#{param4} != null">ptime = #{param4},</if>
+            <if test="#{param5} != null">ppatentee = #{param5},</if>
+            <if test="#{param6} != null">paddress = #{param6},</if>
+        </set>
+        where pid = #{param7}
+    </update>
+</mapper>

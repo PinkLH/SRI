@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.SRI.mapper.UserAworkMapper">
+
+	<resultMap id="BaseResultMap" type="net.cqwu.SRI.entity.Awork">
+		<!--@Table awork-->
+		<result property="awid" column="awid" jdbcType="INTEGER"/>
+		<result property="awname" column="awname" jdbcType="VARCHAR"/>
+		<result property="awperson" column="awperson" jdbcType="VARCHAR"/>
+		<result property="awpress" column="awpress" jdbcType="VARCHAR"/>
+		<result property="awtime" column="awtime" jdbcType="TIMESTAMP"/>
+		<result property="awaddress" column="awaddress" jdbcType="VARCHAR"/>
+		<result property="uid" column="uid" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<resultMap id="BaseExtResultMap" type="net.cqwu.SRI.entity.ext.AworkDateFormatExpansion"
+			   extends="BaseResultMap"/>
+
+	<!-- 查询某个用户的所有学术著作的Excel数据 -->
+	<select id="selectAllUserExcelAwork" resultMap="BaseExtResultMap">
+		select awname, awtime, awpress, awperson
+		from awork
+		where uid = #{param1}
+	</select>
+
+	<!-- 查询所有学术著作的Excel数据 -->
+	<select id="selectExcelAwork" resultMap="BaseExtResultMap">
+		select awname, awtime, awpress, awperson
+		from awork
+	</select>
+
+
+	<!--条件查询学术著作-->
+	<select id="selectAworkCondition" resultType="net.cqwu.SRI.entity.Awork">
+  		select * from awork
+        <where>
+            <if test="awname != null and awname != ''">
+				awname like CONCAT(CONCAT('%',#{awname},'%'))
+            </if>
+			<if test="utype != 'admin'">
+				and uid = #{uid}
+			</if>
+        </where>
+	</select>
+
+	<!--修改学术著作-->
+	<update id="UpdateAwork">
+		update awork
+		<set>
+			<if test="#{param1} != null">awname = #{param1},</if>
+			<if test="#{param2} != null">awperson = #{param2},</if>
+			<if test="#{param3} != null">awpress = #{param3},</if>
+			<if test="#{param4} != null">awtime = #{param4},</if>
+			<if test="#{param5} != null">awaddress = #{param5},</if>
+		</set>
+		where awid = ${param6}
+	</update>
+
+</mapper>
